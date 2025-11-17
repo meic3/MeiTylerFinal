@@ -23,10 +23,8 @@ public class BugLife : MonoBehaviour
 
     void Die()
     {
-        // Give player money
         PlayerMoney.money += moneyReward;
 
-        // Tell shooter target is gone
         BulletShooter shooter = FindAnyObjectByType<BulletShooter>();
         if (shooter != null)
             shooter.ClearTarget(transform);

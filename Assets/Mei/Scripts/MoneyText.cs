@@ -12,7 +12,6 @@ public class MoneyText : MonoBehaviour
 
     void Update()
     {
-        // Only updates when value changes
         if (moneyText.text != PlayerMoney.money.ToString())
             UpdateMoneyText();
     }
