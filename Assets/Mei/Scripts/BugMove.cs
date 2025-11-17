@@ -35,7 +35,11 @@ public class BugMove : MonoBehaviour
         float scaledT = t * (pts.Length - 1);
         int index = Mathf.FloorToInt(scaledT);
         int nextIndex = Mathf.Min(index + 1, pts.Length - 1);
-
+        if (index >= pts.Length) {
+            Destroy(gameObject);
+            return Vector3.zero;
+        }
+        
         float lerpT = scaledT - index;
 
         return Vector3.Lerp(pts[index], pts[nextIndex], lerpT);
