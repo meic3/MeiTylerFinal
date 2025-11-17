@@ -33,6 +33,8 @@ public class CardStack : MonoBehaviour
     {
         if (stackState == StackState.Expanded) return;
 
+        CardStackManager.Instance.stackBeingDragged = this;
+
         // Record the difference between the objects centre, and the clicked point on the camera plane.
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragging = true;
@@ -43,6 +45,8 @@ public class CardStack : MonoBehaviour
     {
         // Stop dragging
         dragging = false;
+
+        CardStackManager.Instance.stackBeingDragged = null;
 
         // dragging this stack onto another stack merges this stack onto the other stack
         if (collidingCardStack != null)

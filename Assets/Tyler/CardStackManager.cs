@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class CardStackManager : MonoBehaviour
 {
-    public static InputManager Instance { get; private set; }
+    public static CardStackManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -19,10 +19,12 @@ public class InputManager : MonoBehaviour
     }
 
 
-    public GameObject CardStackEmpty;
+    public GameObject newCardStack;
 
-    public LayerMask CardStackLayer;
-    public LayerMask CardLayer;
+    public LayerMask cardStackLayer;
+    public LayerMask cardLayer;
+
+    public CardStack stackBeingDragged;
 
     void Update()
     {
@@ -41,6 +43,11 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            if (stackBeingDragged != null)
+            {
+                stackBeingDragged.OnLeftMouseUp();
+            }    
+            /*
             CardStack cardStack = TryHitCardStack();
             if (cardStack != null && cardStack.stackState == CardStack.StackState.Collapsed)
             {
@@ -49,7 +56,7 @@ public class InputManager : MonoBehaviour
             else
             {
                 TryHitCard()?.OnLeftMouseUp();
-            }
+            }*/
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -63,15 +70,15 @@ public class InputManager : MonoBehaviour
     public CardStack TryHitCardStack()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, CardStackLayer);
-
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, cardStackLayer);
+        if (hit.transform != null) Debug.Log(hit.transform.gameObject.name);
         return hit.collider != null ? hit.collider.GetComponent<CardStack>() : null;
     }
 
     public Card TryHitCard()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, CardLayer);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, cardLayer);
 
         return hit.collider != null ? hit.collider.GetComponent<Card>() : null;
     }

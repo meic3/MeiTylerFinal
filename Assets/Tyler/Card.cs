@@ -48,7 +48,7 @@ public class Card : MonoBehaviour
                 if (CurrentStack != null)
                     CurrentStack.RemoveCard(this);
 
-                GameObject go = Instantiate(InputManager.Instance.CardStackEmpty, transform.position, Quaternion.identity);
+                GameObject go = Instantiate(CardStackManager.Instance.newCardStack, transform.position, Quaternion.identity);
                 CardStack newCardStack = go.GetComponent<CardStack>();
                 newCardStack.AddCard(this);
                 newCardStack.OnLeftMouseDown();
@@ -58,7 +58,7 @@ public class Card : MonoBehaviour
     
     public void OnLeftMouseDown()
     {
-        Debug.Log("down");
+        //Debug.Log("down");
         if (!canDrag) return;
 
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -71,7 +71,7 @@ public class Card : MonoBehaviour
     
     public void OnLeftMouseUp()
     {
-        Debug.Log("up");
+        //Debug.Log("up");
         if (!canDrag) return;
 
         dragging = false;

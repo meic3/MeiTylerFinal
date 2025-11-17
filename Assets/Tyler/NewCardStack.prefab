@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1691590958308516654}
   - component: {fileID: -6812078837618251765}
   m_Layer: 12
-  m_Name: CardStackEmpty
+  m_Name: NewCardStack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
