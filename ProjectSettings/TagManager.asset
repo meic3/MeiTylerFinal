@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-<<<<<<< HEAD
   tags: []
-=======
-  tags:
-  - alpaca
-  - bug
-  - shootrange
-  - path
-  - background
-  - gamemanager
->>>>>>> Mei
   layers:
   - Default
   - TransparentFX
@@ -27,8 +17,8 @@ TagManager:
   - 
   - 
   - 
-  - CardStack
-  - Card
+  - 
+  - 
   - 
   - 
   - 
