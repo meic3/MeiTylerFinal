@@ -52,8 +52,6 @@ public class CardStack : MonoBehaviour
         if (collidingCardStack != null)
         {
             MergeInto(collidingCardStack);
-            collidingCardStack = null;
-            Destroy(gameObject);
         }
         else SetSortingBase(normalBase);
 
@@ -88,6 +86,7 @@ public class CardStack : MonoBehaviour
         for (int i = 0; i < Cards.Count; i++)
         {
             Cards[i].transform.localPosition = new Vector3(0, -i * spread, 0);
+            //Cards[i].transform.localPosition = new Vector3(0, -(Cards.Count-i-1) * spread, 0);
             Cards[i].EnableInteraction(true);
         }
     }
@@ -112,6 +111,21 @@ public class CardStack : MonoBehaviour
             collidingCardStack = cs;
     }
 
+
+    private float pushSpd = 1f;
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (collidingCardStack == null) return;
+
+        // push away from colliding stacks while nothing is being dragged
+        if (!dragging && !collidingCardStack.dragging)
+        {
+            // direction away from the other stack
+            Vector3 dir = (transform.position - collidingCardStack.transform.position).normalized;
+            transform.position += dir * pushSpd * Time.deltaTime;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D col)
     {
         CardStack cs = col.GetComponent<CardStack>();
@@ -121,11 +135,17 @@ public class CardStack : MonoBehaviour
 
     private void MergeInto(CardStack cs)
     {
+        // cannot place cards on top of alpaca cards
+        if (cs.Cards[cs.Cards.Count - 1].tag == "alpaca") return;
+
         foreach (Card card in Cards)
         {
             cs.AddCard(card);
         }
         cs.SetSortingBase(normalBase);
+
+        collidingCardStack = null;
+        Destroy(gameObject);
     }
 
     public void AddCard(Card card)
