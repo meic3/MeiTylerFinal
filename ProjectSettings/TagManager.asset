@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - alpaca
+  - bug
+  - shootrange
+  - path
+  - background
+  - gamemanager
   layers:
   - Default
   - TransparentFX
@@ -17,8 +23,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - CardStack
+  - Card
   - 
   - 
   - 
