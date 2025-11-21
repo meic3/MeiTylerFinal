@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BugGenerator : MonoBehaviour
 {
+    public bool canGenerate;
     private float spawnCount = 0;
     [SerializeField] 
     public float spawnTime = 5;
@@ -19,7 +20,10 @@ public class BugGenerator : MonoBehaviour
 
     void Update()
     {
-        spawnCount += Time.deltaTime;
+        if (canGenerate)
+        {
+            spawnCount += Time.deltaTime;
+        }
 
         if (spawnCount >= spawnTime)
         {
