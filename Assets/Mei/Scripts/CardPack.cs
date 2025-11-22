@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class CardPack : MonoBehaviour
 {
-    private int cardNum = 20;
+    private int cardNum = 5;
+    private int cardCount = 0;
     public List<GameObject> listedCards;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,9 +17,9 @@ public class CardPack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(cardNum == 0)
+        if(cardNum <= cardCount)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
@@ -28,10 +31,30 @@ public class CardPack : MonoBehaviour
 
     void OpenPack()
     {
-        int randNum = Random.Range(0, listedCards.Count);
+        int randNum = UnityEngine.Random.Range(0, listedCards.Count);
         GameObject pickedCard = listedCards[randNum];
         Instantiate(pickedCard);
-        cardNum --;
+        cardCount ++;
 
     }
+
+    // void OpenPackTest()
+    // {
+    //     cardCount ++;
+
+    //     var radians = MathF.PI / cardNum * cardCount;
+    //     Debug.Log(radians);
+
+    //     var vertical = MathF.Sin(radians);
+    //     var horizontal = Mathf.Cos(radians);
+
+    //     var cardDir = new Vector3 (vertical, 0, vertical);
+
+    //     var cardPos = transform.position + cardDir * 5;
+    //     int randNum2 = UnityEngine.Random.Range(0, listedCards.Count);
+    //     GameObject pickedCard = listedCards[randNum2];
+    //     Instantiate(pickedCard, cardPos, Quaternion.identity);
+        
+
+    // }
 }
