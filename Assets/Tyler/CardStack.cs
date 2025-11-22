@@ -7,7 +7,7 @@ public class CardStack : MonoBehaviour
 
     public bool dragging = false;
     private Vector3 offset;
-    public CardStack collidingCardStack;
+    public List<CardStack> collidingCardStacks = new List<CardStack>();
     private BoxCollider2D col;
 
     public enum StackState { Collapsed, Expanded };
@@ -49,9 +49,9 @@ public class CardStack : MonoBehaviour
         CardStackManager.Instance.stackBeingDragged = null;
 
         // dragging this stack onto another stack merges this stack onto the other stack
-        if (collidingCardStack != null)
+        if (collidingCardStacks.Count > 0)
         {
-            MergeInto(collidingCardStack);
+            MergeInto(collidingCardStacks[0]);
         }
         else SetSortingBase(normalBase);
 
@@ -107,30 +107,34 @@ public class CardStack : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         CardStack cs = col.GetComponent<CardStack>();
-        if (cs != null)
-            collidingCardStack = cs;
+        if (cs != null && !collidingCardStacks.Contains(cs))
+            collidingCardStacks.Add(cs);
     }
 
 
     private float pushSpd = 1f;
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (collidingCardStack == null) return;
+        if (collidingCardStacks.Count == 0) return;
 
         // push away from colliding stacks while nothing is being dragged
-        if (!dragging && !collidingCardStack.dragging)
+        for (int i=0; i<collidingCardStacks.Count; i++)
         {
-            // direction away from the other stack
-            Vector3 dir = (transform.position - collidingCardStack.transform.position).normalized;
-            transform.position += dir * pushSpd * Time.deltaTime;
+            if (!dragging && !collidingCardStacks[i].dragging)
+            {
+                // direction away from the other stack
+                Vector3 dir = (transform.position - collidingCardStacks[i].transform.position).normalized;
+                if (dir == new Vector3(0, 0, 0)) { dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized; }
+                transform.position += dir * pushSpd * Time.deltaTime;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
         CardStack cs = col.GetComponent<CardStack>();
-        if (cs == collidingCardStack)
-            collidingCardStack = null;
+        if (cs != null && collidingCardStacks.Contains(cs))
+            collidingCardStacks.Remove(cs);
     }
 
     private void MergeInto(CardStack cs)
@@ -144,7 +148,7 @@ public class CardStack : MonoBehaviour
         }
         cs.SetSortingBase(normalBase);
 
-        collidingCardStack = null;
+        //collidingCardStack = null;
         Destroy(gameObject);
     }
 
