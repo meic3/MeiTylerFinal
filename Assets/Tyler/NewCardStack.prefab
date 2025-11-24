@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cards: []
   dragging: 0
-  collidingCardStack: {fileID: 0}
+  collidingCardStack: []
   stackState: 0
 --- !u!61 &1691590958308516654
 BoxCollider2D:
