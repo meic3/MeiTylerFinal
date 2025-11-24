@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class CardPack : MonoBehaviour
 {
-    private int cardNum = 5;
+    private int cardNum = 15;
     private int cardCount = 0;
     public List<GameObject> listedCards;
+
+    public float cardDistFromPack = 4;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,7 +28,7 @@ public class CardPack : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("Clicked");
-        OpenPack();
+        OpenPackTest();
     }
 
     void OpenPack()
@@ -38,23 +40,22 @@ public class CardPack : MonoBehaviour
 
     }
 
-    // void OpenPackTest()
-    // {
-    //     cardCount ++;
+    void OpenPackTest()
+    {
+        cardCount ++;
+        var radians = 2* MathF.PI / cardNum * cardCount;
+        Debug.Log(radians);
 
-    //     var radians = MathF.PI / cardNum * cardCount;
-    //     Debug.Log(radians);
+        var vertical = MathF.Sin(radians);
+        var horizontal = MathF.Cos(radians);
 
-    //     var vertical = MathF.Sin(radians);
-    //     var horizontal = Mathf.Cos(radians);
+        var cardDir = new Vector3 (horizontal, vertical, 0);
 
-    //     var cardDir = new Vector3 (vertical, 0, vertical);
-
-    //     var cardPos = transform.position + cardDir * 5;
-    //     int randNum2 = UnityEngine.Random.Range(0, listedCards.Count);
-    //     GameObject pickedCard = listedCards[randNum2];
-    //     Instantiate(pickedCard, cardPos, Quaternion.identity);
+        var cardPos = transform.position + cardDir * cardDistFromPack;
+        int randNum2 = UnityEngine.Random.Range(0, listedCards.Count);
+        GameObject pickedCard = listedCards[randNum2];
+        Instantiate(pickedCard, cardPos, Quaternion.identity);
         
 
-    // }
+    }
 }

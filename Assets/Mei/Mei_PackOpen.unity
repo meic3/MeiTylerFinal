@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1028387572139299010, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
       propertyPath: m_Name
       value: CardStack
@@ -328,13 +332,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2384868106258881392, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3197773748099215640, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
       propertyPath: m_Name
-      value: Pack_Test
+      value: Pack_Sample
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639318603561630528, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639318603561630528, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639318603561630528, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 6639318603561630528, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.25
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 6639318603561630528, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
       propertyPath: m_LocalPosition.y
