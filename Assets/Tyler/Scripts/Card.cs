@@ -10,6 +10,11 @@ public class Card : MonoBehaviour
         sr = GetComponentInChildren<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
         //col.enabled = false;
+
+        if (CurrentStack == null)
+        {
+            InstantiateNewCardStack();
+        }
     }
 
     public void SetSortingOrder(int i)
@@ -48,9 +53,7 @@ public class Card : MonoBehaviour
                 if (CurrentStack != null)
                     CurrentStack.RemoveCard(this);
 
-                GameObject go = Instantiate(CardStackManager.Instance.newCardStack, transform.position, Quaternion.identity);
-                CardStack newCardStack = go.GetComponent<CardStack>();
-                newCardStack.AddCard(this);
+                CardStack newCardStack = InstantiateNewCardStack();
                 newCardStack.OnLeftMouseDown();
             }
         }
@@ -77,5 +80,14 @@ public class Card : MonoBehaviour
         dragging = false;
 
         CurrentStack.ExpandStack();
+    }
+
+    // create a new cardStack and add this card to the stack
+    private CardStack InstantiateNewCardStack()
+    {
+        GameObject go = Instantiate(CardStackManager.Instance.newCardStack, transform.position, Quaternion.identity);
+        CardStack newCardStack = go.GetComponent<CardStack>();
+        newCardStack.AddCard(this);
+        return newCardStack;
     }
 }

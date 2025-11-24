@@ -46,8 +46,8 @@ public class CardStackManager : MonoBehaviour
             if (stackBeingDragged != null)
             {
                 stackBeingDragged.OnLeftMouseUp();
-            }    
-            /*
+            }
+
             CardStack cardStack = TryHitCardStack();
             if (cardStack != null && cardStack.stackState == CardStack.StackState.Collapsed)
             {
@@ -56,7 +56,7 @@ public class CardStackManager : MonoBehaviour
             else
             {
                 TryHitCard()?.OnLeftMouseUp();
-            }*/
+            }
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -71,7 +71,7 @@ public class CardStackManager : MonoBehaviour
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, cardStackLayer);
-        if (hit.transform != null) Debug.Log(hit.transform.gameObject.name);
+        //if (hit.transform != null) Debug.Log(hit.transform.gameObject.name);
         return hit.collider != null ? hit.collider.GetComponent<CardStack>() : null;
     }
 
