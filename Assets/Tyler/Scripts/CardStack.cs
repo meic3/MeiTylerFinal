@@ -6,7 +6,7 @@ public class CardStack : MonoBehaviour
     // list of cards in this card stack
     public List<Card> Cards = new List<Card>();
     // all cardstacks currently colliding with this cardstack
-    private List<CardStack> collidingCardStacks = new List<CardStack>();
+    public List<CardStack> collidingCardStacks = new List<CardStack>();
     // reference to the alpaca card at the top of the stack if there is one
     public Alpaca alpaca;
 
@@ -180,7 +180,7 @@ public class CardStack : MonoBehaviour
     }
 
 
-    private float pushSpd = 1f;
+    private float pushSpd = .5f;
     private void OnTriggerStay2D(Collider2D col)
     {
         if (collidingCardStacks.Count == 0) return;

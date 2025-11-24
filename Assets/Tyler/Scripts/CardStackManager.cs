@@ -46,8 +46,8 @@ public class CardStackManager : MonoBehaviour
             if (stackBeingDragged != null)
             {
                 stackBeingDragged.OnLeftMouseUp();
-            }    
-            /*
+            }
+
             CardStack cardStack = TryHitCardStack();
             if (cardStack != null && cardStack.stackState == CardStack.StackState.Collapsed)
             {
@@ -56,7 +56,7 @@ public class CardStackManager : MonoBehaviour
             else
             {
                 TryHitCard()?.OnLeftMouseUp();
-            }*/
+            }
         }
 
         if (Input.GetMouseButtonDown(1))
