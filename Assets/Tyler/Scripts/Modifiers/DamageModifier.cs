@@ -6,11 +6,11 @@ public class DamageModifier : MonoBehaviour, ICardModifier
 
     public void OnActivate(Alpaca alpaca)
     {
-        alpaca.mDamage *= multiplier;
+        alpaca.stats.damage.MultiplyValue(multiplier);
     }
     public void OnDeactivate(Alpaca alpaca)
     {
-        alpaca.mDamage /= multiplier;
+        alpaca.stats.damage.MultiplyValue(1/multiplier);
     }
     public void OnUpdate(Alpaca alpaca) { }
 }
