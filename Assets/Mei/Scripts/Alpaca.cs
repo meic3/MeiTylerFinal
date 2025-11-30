@@ -3,45 +3,60 @@ using UnityEngine;
 
 public class Alpaca : MonoBehaviour
 {
-    // multiplicative stats
-    // represent the percentage of the default number
-    public float mSpeed = 1f;
-    public float mDamage = 1f;
+    public AlpacaStats stats;
 
-    // additive stats
-    public float aDamage = 0f;
-    public float aRange = 0f;
-
-
-    Card card;
-    CardStack currentStack;
-    int cardsCount;
-
-    [SerializeField] CircleCollider2D rangeCol;
-    float defaultRange;
-    [SerializeField] BulletShooter bulletShooter;
-    float defaultSpeed;
+    IAttack attack;
+    float baseAttackCooldown = 1f;
+    float cooldownTimer = 0f;
 
     void Start()
     {
-        card = GetComponent<Card>();
+        stats.Start();
+        RangeStart();
 
-        defaultRange = rangeCol.radius;
-        defaultSpeed = bulletShooter.shootCD;
+        card = GetComponent<Card>();
+        attack = GetComponent<IAttack>();
     }
 
     void Update()
     {
         CheckForStackUpdate();
 
-        rangeCol.radius = defaultRange + aRange;
-        bulletShooter.shootCD = defaultSpeed / mSpeed;
+        // attack on cooldown
+        if (baseAttackCooldown / stats.speed.value < cooldownTimer)
+        {
+            // if there are bugs to attack
+            if (rangeHelper.bugsInRange.Count > 0)
+            {
+                attack.Attack(this);
+                cooldownTimer = 0f;
+            }
+        }
+        else cooldownTimer += Time.deltaTime;
     }
 
+    #region tracking enemies in range
 
-    #region updating modifiers
+    // scaling collider based on range
+    [HideInInspector] public EnemyInRangeHelper rangeHelper;
+
+    void RangeStart() { rangeHelper = GetComponentInChildren<EnemyInRangeHelper>(); }
+
+    void UpdateRange()
+    {
+        rangeHelper.SetRadius(stats.range.value);
+    }
+
+    #endregion
+
+    #region tracking modifiers
+
     // current modifiers on the alpaca
     public List<ICardModifier> activeModifiers = new List<ICardModifier>();
+
+    Card card;
+    CardStack currentStack;
+    int cardsCount;
 
     // refresh modifiers whenever there is a change to the stack
     private void CheckForStackUpdate()
@@ -54,29 +69,37 @@ public class Alpaca : MonoBehaviour
         }
     }
 
-    // apply all power up cards' modifiers to the alpaca
+    // clear and reapply modifiers
     private void UpdateAlpacaModifiers()
     {
         DeactivateModifiersOnAlpaca();
+        activeModifiers.Clear();
+
+        GetModifiersFromStack();
         ActivateModifiersOnAlpaca();
+
+        stats.Recalculate();
+        UpdateRange();
     }
 
     private void DeactivateModifiersOnAlpaca()
     {
         foreach (ICardModifier modifier in activeModifiers)
             modifier.OnDeactivate(this);
-
-        activeModifiers.Clear();
     }
 
     private void ActivateModifiersOnAlpaca()
     {
-        // activate new effects from all cards below the top
+        foreach (ICardModifier modifier in activeModifiers)
+            modifier.OnActivate(this);
+    }
+
+    private void GetModifiersFromStack()
+    {
         for (int i = 0; i < currentStack.Cards.Count - 1; i++)
         {
             foreach (ICardModifier modifier in currentStack.Cards[i].GetComponents<ICardModifier>())
             {
-                modifier.OnActivate(this);
                 activeModifiers.Add(modifier);
             }
         }

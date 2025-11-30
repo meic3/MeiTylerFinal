@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BugMove : MonoBehaviour
 {
+    Bug bug;
+
     [SerializeField] 
     private LineRenderer lineRend;
     [SerializeField] 
@@ -11,6 +13,8 @@ public class BugMove : MonoBehaviour
     private float t = 0f; 
     void Start()
     {
+        bug = GetComponent<Bug>();
+
         points = new Vector3[lineRend.positionCount];
         lineRend.GetPositions(points);
     }
@@ -19,7 +23,8 @@ public class BugMove : MonoBehaviour
     {
         if (points.Length < 2) return;
 
-        t += moveSpeed * Time.deltaTime;
+        if (bug.isSlowed) t += moveSpeed * (1-bug.effectiveSlowInstance.slow) * Time.deltaTime;
+        else t += moveSpeed * Time.deltaTime;
 
 
         Vector3 pos = GetPointOnLine(points, t);
