@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEditor.Tilemaps;
+using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PhaseManager : MonoBehaviour
 {
@@ -27,6 +29,9 @@ public class PhaseManager : MonoBehaviour
     private float remainingTime;
     private float setTime = 10;
 
+    [SerializeField]
+    private GameObject timerUI;
+
     void Start()
     {
         bugGenerator.canGenerate = false;
@@ -43,6 +48,7 @@ public class PhaseManager : MonoBehaviour
         }
         if (!isInGame)
         {
+        timerUI.SetActive(true);
         remainingTime -= Time.deltaTime;
         }  
         int minutes = Mathf.FloorToInt(remainingTime / 60);
@@ -52,6 +58,7 @@ public class PhaseManager : MonoBehaviour
 
     public void StartWave()
     {
+        timerUI.SetActive(false);
         isInGame = true;
         remainingTime = setTime;
         bugGenerator.canGenerate = true;

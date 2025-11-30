@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CardPack : MonoBehaviour
 {
-    private int cardNum = 15;
+    private int cardNum = 5;
     private int cardCount = 0;
     public List<GameObject> listedCards;
 

@@ -1,4 +1,4 @@
 public static class PlayerMoney
 {
-    public static int money = 0;
+    public static float money = 0;
 }

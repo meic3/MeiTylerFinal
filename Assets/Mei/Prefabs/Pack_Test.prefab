@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.25, y: -0.13, z: 0}
-  m_LocalScale: {x: 0.26, y: 0.26, z: 0.26}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,6 +108,7 @@ MonoBehaviour:
   - {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
   - {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
   - {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
+  cardDistFromPack: 1
 --- !u!61 &5605221901744268440
 BoxCollider2D:
   m_ObjectHideFlags: 0
