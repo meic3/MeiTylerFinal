@@ -6,11 +6,11 @@ public class RangeModifier : MonoBehaviour, ICardModifier
 
     public void OnActivate(Alpaca alpaca)
     {
-        alpaca.aRange += value;
+        alpaca.stats.range.AddValue(value);
     }
     public void OnDeactivate(Alpaca alpaca)
     {
-        alpaca.aRange -= value;
+        alpaca.stats.range.AddValue(-value);
     }
     public void OnUpdate(Alpaca alpaca) { }
 }
