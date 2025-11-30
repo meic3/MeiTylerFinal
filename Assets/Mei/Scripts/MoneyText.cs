@@ -18,6 +18,6 @@ public class MoneyText : MonoBehaviour
 
     void UpdateMoneyText()
     {
-        moneyText.text = "$ " + PlayerMoney.money.ToString();
+        moneyText.text = "$" + PlayerMoney.money.ToString();
     }
 }
