@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.97, y: 1.39, z: 0}
-  m_LocalScale: {x: 0.19, y: 0.19, z: 0.19}
+  m_LocalScale: {x: 0.11000001, y: 0.11000001, z: 0.11000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f457888c8c563248ace1fb6026a9259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bugLife: {fileID: 0}
   isSlowed: 0
 --- !u!114 &740740348770314946
 MonoBehaviour:
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRend: {fileID: 7676989526399322327, guid: deeb20a8383bf484b934480e3c79c1fb, type: 3}
-  moveSpeed: 0.2
+  moveSpeed: 0.1
 --- !u!114 &1578035680775103800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +169,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 10
   moneyReward: 5
+  Died: 0

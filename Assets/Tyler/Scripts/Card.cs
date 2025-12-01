@@ -15,6 +15,8 @@ public class Card : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
         //col.enabled = false;
 
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+
         if (CurrentStack == null)
         {
             InstantiateNewCardStack();

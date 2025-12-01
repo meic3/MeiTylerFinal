@@ -1,34 +1,45 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Projectile : MonoBehaviour
 {
-    public Alpaca alpaca;
+    [HideInInspector] public Alpaca alpaca;
 
-    float projectileSpeed = 20f;
+    GameObject target;
+    public bool isHoming = false;
+
+    int chainedCount = 0; // have already chained how many times
+    int piercedCount = 0;
+    List<GameObject> prevTargets = new List<GameObject>(); // cannot chain to bugs already hit by this projectile
+
+
+    public float projectileSpeed = 20f;
     float lifeTime = 5f;
     Rigidbody2D rb;
 
 
-    #region Should be called when instantiated/shot
-
     // set constant velocity towards direction, rotate towards direction
-    public void SetDir(Vector3 dir)
+
+    // Should be called when instantiated/shot
+    public void Init(GameObject target, Alpaca alpaca)
     {
+        this.target = target;
+        this.alpaca = alpaca;
+
         rb = GetComponent<Rigidbody2D>();
+        AimAtTarget();
+    }
+
+    // set velocity and rotation towards the targeted bug
+    private void AimAtTarget()
+    {
+        Vector3 dir = target.transform.position - transform.position;
+        dir = dir.normalized;
+
         rb.linearVelocity = dir * projectileSpeed;
 
         transform.up = dir;
     }
-
-    public void SetAlpaca(Alpaca alpaca)
-    {
-        this.alpaca = alpaca;
-
-    }
-
-    #endregion
-
-
 
 
 
@@ -36,6 +47,11 @@ public class Projectile : MonoBehaviour
     {
         lifeTime -= Time.deltaTime;
         if (lifeTime < 0) Destroy(gameObject);
+
+        if (isHoming && target != null) // if isHoming and target wasnt already killed by something else
+        {
+            AimAtTarget();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -43,16 +59,57 @@ public class Projectile : MonoBehaviour
         if (col.CompareTag("bug"))
         {
             Bug bug = col.GetComponent<Bug>();
-            if (bug != null) HitBug(bug);
+            if (bug != null && !bug.bugLife.Died) HitBug(bug);
         }
     }
 
     private void HitBug(Bug bug)
     {
-        bug.bugLife.TakeDamage(alpaca.stats.damage.value);
+        prevTargets.Add(bug.gameObject);
+
+        // bug take damage
+        bug.bugLife.TakeDamage(alpaca.stats.damage.value, alpaca.stats.cull.value);
+
+        // slow
         if (alpaca.stats.slow.value > 0)
         { bug.AddSlowInstance(alpaca.stats.slow.value, 2f); } // default 2 second slow for now
 
-        Destroy(gameObject); // to do: might hit other bugs before projectile is destroyed
+        // chain
+        if (alpaca.stats.chain.value > 0 && chainedCount < alpaca.stats.chain.value)
+        {
+            chainedCount++;
+            isHoming = true;
+            target = FindClosestBug();
+        }
+        // pierce
+        else if (alpaca.stats.pierce.value > 0 && piercedCount < alpaca.stats.pierce.value)
+        {
+            piercedCount++;
+            isHoming = false;
+        }
+        // projectiles uses all chains before piercing
+
+        else Destroy(gameObject); // to do: might hit other bugs before projectile is destroyed
+    }
+
+    // find closest bug that hasnt been hit by this projectile
+    // could be optimized by having an bugmanager keeping a list of all bugs
+    public GameObject FindClosestBug()
+    {
+        GameObject[] bugs = GameObject.FindGameObjectsWithTag("bug");
+        GameObject closestBug = null;
+        float minDistanceSqr = Mathf.Infinity;
+
+        foreach (GameObject bug in bugs)
+        {
+            if (prevTargets.Contains(bug)) continue;
+            float distanceSqr = (transform.position - bug.transform.position).sqrMagnitude;
+            if (distanceSqr < minDistanceSqr)
+            {
+                minDistanceSqr = distanceSqr;
+                closestBug = bug;
+            }
+        }
+        return closestBug;
     }
 }
