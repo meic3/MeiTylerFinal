@@ -6,21 +6,12 @@ public class ShoppingUIManager : MonoBehaviour
     private Vector3 closedPos;
     private Vector3 openPos;
 
-
-    [SerializeField]
-    private RectTransform CardUI;
-    private RectTransform rectTransform;
+    public GameObject anchorObj;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    void Awake()
-    {
-        rectTransform = GetComponent<RectTransform>();
-        closedPos = rectTransform.position;
-    }
     void Start()
     {
-
-        openPos = new Vector3(closedPos.x - CardUI.sizeDelta.x, closedPos.y, closedPos.z);
+        closedPos = anchorObj.transform.position;
+        openPos = new Vector3 (closedPos.x - 2, closedPos.y, closedPos.z);
 
     }
 
@@ -28,11 +19,11 @@ public class ShoppingUIManager : MonoBehaviour
     {
         if (isOpen)
         {
-            rectTransform.position = closedPos;
+            anchorObj.transform.position = closedPos;
         }
         else
         {
-            rectTransform.position = openPos;
+            anchorObj.transform.position = openPos;
         }
         isOpen = !isOpen;
     }
