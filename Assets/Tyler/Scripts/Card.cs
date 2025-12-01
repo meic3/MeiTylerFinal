@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public float cardPrice = 1f;
+
+
+
     SpriteRenderer sr;
     BoxCollider2D col;
 

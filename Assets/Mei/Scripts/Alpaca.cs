@@ -44,6 +44,7 @@ public class Alpaca : MonoBehaviour
 
     void UpdateRange()
     {
+        //Debug.Log("updating range to: " + stats.range.value);
         rangeHelper.SetRadius(stats.range.value);
     }
 

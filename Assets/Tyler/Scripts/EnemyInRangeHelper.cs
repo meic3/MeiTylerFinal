@@ -6,7 +6,7 @@ public class EnemyInRangeHelper : MonoBehaviour
     CircleCollider2D col;
     public List<GameObject> bugsInRange = new List<GameObject>();
 
-    private void Start()
+    private void Awake()
     {
         col = GetComponent<CircleCollider2D>();
     }

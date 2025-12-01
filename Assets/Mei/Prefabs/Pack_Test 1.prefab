@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5605221901744268440}
   - component: {fileID: 6038339080228081652}
   m_Layer: 0
-  m_Name: Pack_Test
+  m_Name: Pack_Test 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,11 +103,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listedCards:
-  - {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
-  - {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
-  - {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
-  - {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
-  - {fileID: 7869827331368882787, guid: ca6305e2c33844302a2985f822f1adc6, type: 3}
+  - {fileID: 6857987410759336642, guid: 115d3cf0d8c11437a9f42ab3f028c4ab, type: 3}
+  - {fileID: 8094221545319690972, guid: fa1e63125e6d047d08d7eb85ecff05b3, type: 3}
+  - {fileID: 8153446227308066829, guid: c28e733f670574784bee308f566f0609, type: 3}
+  - {fileID: 5850008406166386198, guid: 68d5f5350948d4cf999e92de4591a7b2, type: 3}
   cardDistFromPack: 1
 --- !u!61 &5605221901744268440
 BoxCollider2D:

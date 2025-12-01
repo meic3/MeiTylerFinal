@@ -230,7 +230,7 @@ MonoBehaviour:
   allPacksInfo:
   - spr: {fileID: 5423305453593347490, guid: ee17f1b7b55f7494abd95d4d4d39e31c, type: 3}
     price: 3
-    prefab: {fileID: 3197773748099215640, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
+    prefab: {fileID: 3197773748099215640, guid: 0c4c46626ee764c68bf20d90ed134f12, type: 3}
   - spr: {fileID: -4397755202199781671, guid: fdbd3c5f9c17da14ea6101d10a5d7364, type: 3}
     price: 5
     prefab: {fileID: 3197773748099215640, guid: 0c4e20534b0104146aa623bdb022f998, type: 3}
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 199383e880bced54dae544933c4453a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardUI: {fileID: 8835152261328649328}
+  anchorObj: {fileID: 1770647733901288776}
 --- !u!1 &2222244231757435987
 GameObject:
   m_ObjectHideFlags: 0
