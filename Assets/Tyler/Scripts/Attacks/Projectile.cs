@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public Alpaca alpaca;
 
     GameObject target;
-    public bool isHoming = false;
+    bool isHoming = false;
 
     int chainedCount = 0; // have already chained how many times
     int piercedCount = 0;
@@ -21,10 +21,11 @@ public class Projectile : MonoBehaviour
     // set constant velocity towards direction, rotate towards direction
 
     // Should be called when instantiated/shot
-    public void Init(GameObject target, Alpaca alpaca)
+    public virtual void Init(GameObject target, Alpaca alpaca)
     {
         this.target = target;
         this.alpaca = alpaca;
+        isHoming = alpaca.stats.homingProjectile;
 
         rb = GetComponent<Rigidbody2D>();
         AimAtTarget();
@@ -63,7 +64,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void HitBug(Bug bug)
+    protected virtual void HitBug(Bug bug)
     {
         prevTargets.Add(bug.gameObject);
 
@@ -94,7 +95,7 @@ public class Projectile : MonoBehaviour
 
     // find closest bug that hasnt been hit by this projectile
     // could be optimized by having an bugmanager keeping a list of all bugs
-    public GameObject FindClosestBug()
+    private GameObject FindClosestBug()
     {
         GameObject[] bugs = GameObject.FindGameObjectsWithTag("bug");
         GameObject closestBug = null;

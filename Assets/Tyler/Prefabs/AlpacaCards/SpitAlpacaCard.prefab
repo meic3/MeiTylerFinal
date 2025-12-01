@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 4525800078387622501}
   - component: {fileID: 8437594094066122546}
   m_Layer: 13
-  m_Name: AlpacaCard
+  m_Name: SpitAlpacaCard
   m_TagString: alpaca
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,6 +276,9 @@ MonoBehaviour:
       value: 0
     cull:
       value: 0
+    pierce:
+      value: 0
+    homingProjectile: 0
   rangeHelper: {fileID: 0}
 --- !u!114 &4525800078387622501
 MonoBehaviour:
@@ -289,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708a5e4e78c260c479d268a7c0ed54c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6278236244346385921, guid: 53ec5fcb1880ec842a5661ec5e063d84, type: 3}
+  projectilePrefab: {fileID: 6278236244346385921, guid: fad3f26697c0f460fb4a67d1bc94d3e9, type: 3}
 --- !u!61 &8437594094066122546
 BoxCollider2D:
   m_ObjectHideFlags: 0
