@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRend: {fileID: 7676989526399322327, guid: deeb20a8383bf484b934480e3c79c1fb, type: 3}
-  moveSpeed: 0.1
+  moveSpeed: 0.23
 --- !u!114 &1578035680775103800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57399991ac4d7144aa350b9e5b72a5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
+  maxHP: 30
   moneyReward: 5
   Died: 0

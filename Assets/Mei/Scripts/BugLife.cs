@@ -34,6 +34,13 @@ public class BugLife : MonoBehaviour
         if (shooter != null)
             shooter.ClearTarget(transform);
 
+        
+
+        BugGenerator generator = FindObjectOfType<BugGenerator>();
+        if (generator != null)
+        {
+            generator.OnBugKilled();
+        }
         Destroy(gameObject);
     }
 }
