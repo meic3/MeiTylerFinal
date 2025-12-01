@@ -8,12 +8,15 @@ public class AlpacaStats
     public Stat damage = new Stat(1);
     public Stat range = new Stat(3);
     public Stat speed = new Stat(1);
+    public Stat AOE = new Stat(1);
     public Stat slow = new Stat(0);// to do: need to clamp value from 0-1
     public Stat attackCount = new Stat(1); // depending on the attack style, could be # of projectile, beam, or trap. each attack is directed at a different bug 
-    public Stat chain = new Stat(0); // not implemented
-    public Stat cullingHealth = new Stat(0); // not implemented
+    public Stat chain = new Stat(0); // chain to bugs that hasnt been hit by this attack yet
+    public Stat cull = new Stat(0); // the attack will kill bugs if their remaining hp after the attack is less than or equal to cull value
+    public Stat pierce = new Stat(0);
+    public bool homingProjectile = false;
 
-
+    // updates the actual stat value for each stat. called whenever stack is updated
     public void Recalculate()
     {
         foreach (Stat stat in stats)
@@ -22,7 +25,7 @@ public class AlpacaStats
 
     public void Start()
     {
-        stats = new Stat[]{ damage, range, speed, slow, attackCount, chain, cullingHealth };
+        stats = new Stat[]{ damage, range, speed, AOE, slow, attackCount, chain, cull, pierce };
 
         foreach (Stat stat in stats)
         { stat.Start(); }
