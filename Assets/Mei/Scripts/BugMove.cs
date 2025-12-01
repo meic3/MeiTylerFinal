@@ -11,16 +11,25 @@ public class BugMove : MonoBehaviour
 
     private Vector3[] points;
     private float t = 0f; 
+    private Vector3 losePos;
+
     void Start()
     {
         bug = GetComponent<Bug>();
 
         points = new Vector3[lineRend.positionCount];
         lineRend.GetPositions(points);
+        losePos = lineRend.GetPosition(lineRend.positionCount-1);
     }
 
     void Update()
     {
+        if (transform.position == losePos)
+        {
+            PhaseManager phaseManager = FindObjectOfType<PhaseManager>();
+            phaseManager.LoseGame();
+            Debug.Log("Lost");
+        }
         if (points.Length < 2) return;
 
         if (bug.isSlowed) t += moveSpeed * (1-bug.effectiveSlowInstance.slow) * Time.deltaTime;

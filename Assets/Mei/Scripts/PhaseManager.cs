@@ -1,66 +1,119 @@
 using UnityEngine;
 using TMPro;
-using UnityEditor.Tilemaps;
-using UnityEngine.UIElements;
-using UnityEngine.UI;
 
 public class PhaseManager : MonoBehaviour
 {
-    public class Wave
-    {
-        public int cockroachNum;
-        public int flyNum;
-        public int stinkBugNum;
-        public Wave(int cockroach, int fly, int stinkbug)
-        {
-            cockroachNum = cockroach;
-            flyNum = fly;
-            stinkBugNum = stinkbug;
-        }
-    }
+    public WaveManager[] waves; 
 
-    public Wave wave1 = new Wave(20,0,0);
-    public int waveCount;
     public bool isInGame;
     public BugGenerator bugGenerator;
 
     [SerializeField]
     private TextMeshProUGUI timerText;
+    [SerializeField]
+    private TextMeshProUGUI phaseText; 
+
+    [SerializeField]
+    private TextMeshProUGUI winLoseText; 
     private float remainingTime;
-    private float setTime = 10;
+    private float setTime = 30;
+    private int currentWaveNum = 0;
 
     [SerializeField]
     private GameObject timerUI;
 
     void Start()
     {
+        winLoseText.text = "";
+        remainingTime = setTime;
         bugGenerator.canGenerate = false;
         isInGame = false;
-        remainingTime = setTime;
+        UpdatePhaseText(); 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (remainingTime <= 0)
-        {
-            StartWave();
-        }
         if (!isInGame)
         {
-        timerUI.SetActive(true);
-        remainingTime -= Time.deltaTime;
-        }  
-        int minutes = Mathf.FloorToInt(remainingTime / 60);
-        int seconds = Mathf.FloorToInt(remainingTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}",minutes,seconds);
+            PrepTime();
+        }
+        else
+        {
+            InGame();
+        }
     }
 
-    public void StartWave()
+    public void InGame()
     {
         timerUI.SetActive(false);
         isInGame = true;
-        remainingTime = setTime;
-        bugGenerator.canGenerate = true;
+        
+        if (bugGenerator.IsWaveComplete())
+        {
+    
+            currentWaveNum++;
+            
+            if (currentWaveNum >= waves.Length)
+            {
+                // beateeeeed theeeeee levellllllll
+                winLoseText.text = "You Win!!!!";
+                            Debug.Log("Win");
+            }
+            
+            isInGame = false;
+            remainingTime = setTime;
+            UpdatePhaseText();
+        }
+    }
+
+    public void SkipPrepTime()
+    {
+        if (!isInGame) 
+        {
+            remainingTime = 0; 
+        }
+    }
+
+    public void PrepTime()
+    {
+        if (remainingTime <= 0)
+        {
+            remainingTime = setTime;
+            isInGame = true;
+            
+            if (currentWaveNum < waves.Length)
+            {
+                bugGenerator.StartNewWave(waves[currentWaveNum]);
+                UpdatePhaseText();
+            }
+        }
+        else
+        {
+            timerUI.SetActive(true);
+            remainingTime -= Time.deltaTime;
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int seconds = Mathf.FloorToInt(remainingTime % 60);
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+    }
+
+    void UpdatePhaseText()
+    {
+        if (phaseText != null)
+        {
+            if (isInGame)
+            {
+                phaseText.text = "Wave " + (currentWaveNum + 1);
+            }
+            else
+            {
+                phaseText.text = "Prep Time";
+            }
+        }
+    }
+
+    public void LoseGame()
+    {
+        winLoseText.text = "You Lost!!!!!!!";
     }
 }
