@@ -27,7 +27,7 @@ public class CardPack : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Clicked");
+        //Debug.Log("Clicked");
         OpenPackTest();
     }
 
@@ -44,7 +44,7 @@ public class CardPack : MonoBehaviour
     {
         cardCount ++;
         var radians = 2* MathF.PI / cardNum * cardCount;
-        Debug.Log(radians);
+        //Debug.Log(radians);
 
         var vertical = MathF.Sin(radians);
         var horizontal = MathF.Cos(radians);

@@ -1,12 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class CardStack : MonoBehaviour
+public class CardStack : Collidable
 {
     // list of cards in this card stack
     public List<Card> Cards = new List<Card>();
-    // all cardstacks currently colliding with this cardstack
-    public List<CardStack> collidingCardStacks = new List<CardStack>();
+    // all colliders currently colliding with this stack that the stack should not overlap with
+    public List<Collidable> overlappingCollidables = new List<Collidable>();
     // reference to the alpaca card at the top of the stack if there is one
     public Alpaca alpaca;
 
@@ -28,6 +28,8 @@ public class CardStack : MonoBehaviour
             // Move object, taking into account original offset.
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
+        PushUpdate();
+        //pushedThisFrame = false;
     }
 
     #region click and drag, merging stacks, expanding stacks
@@ -61,9 +63,9 @@ public class CardStack : MonoBehaviour
         CardStackManager.Instance.stackBeingDragged = null;
 
         // dragging this stack onto another stack merges this stack onto the other stack
-        if (collidingCardStacks.Count > 0)
+        if (overlappingCollidables.Count > 0)
         {
-            MergeInto(collidingCardStacks[0]);
+            MergeInto(FindFirstCardStackInOverlappingCollidables());
         }
     }
 
@@ -128,6 +130,8 @@ public class CardStack : MonoBehaviour
     // merge this stack into another stack
     private void MergeInto(CardStack cs)
     {
+        if (cs == null) return;
+
         // cannot place cards on top of alpaca
         if (cs.alpaca != null) return;
 
@@ -139,6 +143,19 @@ public class CardStack : MonoBehaviour
 
         //collidingCardStack = null;
         Destroy(gameObject);
+    }
+
+    // find the first CardStack in the list of colliding colliders
+    // returns null if none found
+    private CardStack FindFirstCardStackInOverlappingCollidables()
+    {
+        foreach (Collidable collidable in overlappingCollidables)
+        {
+            CardStack cs = collidable.gameObject.GetComponent<CardStack>();
+            if (cs != null) return cs;
+        }
+
+        return null;
     }
     #endregion
 
@@ -171,38 +188,59 @@ public class CardStack : MonoBehaviour
 
 
 
-    #region push nearby stacks
+    #region push away from nearby colliders
+
+    //public bool pushedThisFrame = false;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
+        Collidable collidable = col.GetComponent<Collidable>();
+        if (collidable == null) return;
+        if (!overlappingCollidables.Contains(collidable))
+            overlappingCollidables.Add(collidable);
+        /*
         CardStack cs = col.GetComponent<CardStack>();
         if (cs != null && !collidingCardStacks.Contains(cs))
             collidingCardStacks.Add(cs);
+        */
     }
 
-
-    private float pushSpd = .5f;
-    private void OnTriggerStay2D(Collider2D col)
+    private float pushSpd = 1f;
+    private void PushUpdate()
     {
-        if (collidingCardStacks.Count == 0) return;
+        if (overlappingCollidables.Count == 0) return;
 
-        // push away from colliding stacks while nothing is being dragged
-        for (int i = 0; i < collidingCardStacks.Count; i++)
+        // does not push while being dragged
+        if (CardStackManager.Instance.stackBeingDragged == this) return;
+
+        // move away from all colliding objects
+        for (int i = 0; i < overlappingCollidables.Count; i++)
         {
-            if (!dragging && !collidingCardStacks[i].dragging)
-            {
-                // direction away from the other stack
-                Vector3 dir = (transform.position - collidingCardStacks[i].transform.position).normalized;
-                if (dir == new Vector3(0, 0, 0)) { dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized; }
-                transform.position += dir * pushSpd * Time.deltaTime;
-            }
+            // does not interact with the stack being dragged
+            CardStack cs = overlappingCollidables[i].gameObject.GetComponent<CardStack>();
+            if (cs != null && cs == CardStackManager.Instance.stackBeingDragged) continue;
+            // does not push away from stacks that have already pushed this frame
+            //if (cs != null && cs.pushedThisFrame) continue;
+
+            // move away from the colliding object
+            Vector3 dir = (transform.position - overlappingCollidables[i].gameObject.transform.position).normalized;
+            if (dir == new Vector3(0, 0, 0)) { dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized; }
+            transform.position += dir * pushSpd * Time.deltaTime;
         }
+        //pushedThisFrame = true;
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
+        Collidable collidable = col.GetComponent<Collidable>();
+        if (collidable == null) return;
+        if (overlappingCollidables.Contains(collidable))
+            overlappingCollidables.Remove(collidable);
+        /*
         CardStack cs = col.GetComponent<CardStack>();
         if (cs != null && collidingCardStacks.Contains(cs))
             collidingCardStacks.Remove(cs);
+        */
     }
     #endregion
 }

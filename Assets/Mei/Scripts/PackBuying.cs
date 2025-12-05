@@ -36,6 +36,7 @@ public class PackBuying : MonoBehaviour
                 canvas.worldCamera,
                 out worldPos
             );
+            worldPos = new Vector3(worldPos.x, worldPos.y, 0);
             rectTransform.position = worldPos;
             if (Input.GetMouseButtonDown(0))
             {
@@ -63,7 +64,7 @@ public class PackBuying : MonoBehaviour
         if (origPos == Vector3.zero)
         {
             origPos = rectTransform.position;
-            Debug.Log(origPos);
+            //Debug.Log(origPos);
         }
     }
     
