@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using NUnit.Framework;
+using Unity.VisualScripting;
 
 public class PhaseManager : MonoBehaviour
 {
@@ -21,6 +24,22 @@ public class PhaseManager : MonoBehaviour
 
     [SerializeField]
     private GameObject timerUI;
+
+    public bool isPaused = false;
+    public bool inTutorial = false;
+
+    void Awake()
+    {
+        if(SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            isPaused = true;
+            inTutorial = true;
+        }
+
+        else
+        {
+        }
+    } 
 
     void Start()
     {

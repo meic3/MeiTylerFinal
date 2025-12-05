@@ -920,7 +920,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1018469423}
         m_TargetAssemblyTypeName: TitleScreenManager, Assembly-CSharp
-        m_MethodName: GotoLevel
+        m_MethodName: GotoTutorial
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

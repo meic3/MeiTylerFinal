@@ -21,6 +21,8 @@ public class BugGenerator : MonoBehaviour
 
     private Vector3 spawnPos;
 
+    public bool isPaused = false;
+
 
     void Start()
     {
