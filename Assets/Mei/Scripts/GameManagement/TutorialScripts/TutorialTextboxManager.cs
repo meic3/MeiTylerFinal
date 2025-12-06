@@ -15,6 +15,9 @@ public class TutorialTextboxManager : MonoBehaviour
     [SerializeField]
     private TMP_Text dialogueText;
 
+    [SerializeField]
+    TutorialManager tutorialManager;
+
     public bool textShow = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,11 +31,11 @@ public class TutorialTextboxManager : MonoBehaviour
 
         if (tutorialTextIndex >= tutorialTextNum)
         {
-            NextTextGroup();
+            tutorialManager.NewTutorial();
         }
         else
         {
-            UpdateTextMessage();
+           UpdateTextMessage();
         }
 
     }
