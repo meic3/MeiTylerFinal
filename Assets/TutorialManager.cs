@@ -6,6 +6,11 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> currentInteractItem;
 
+    private List<Transform> cardTargets;
+
+    [SerializeField] 
+    private float targetRadius = 1f;
+
     private int currentInteractItemIndex = 0;
     private float currentOriginalZNum;
 
@@ -32,18 +37,17 @@ public class TutorialManager : MonoBehaviour
     }
     void Start()
     {
-        
+        ResetInteractValues();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        while (inTutorial)
+        if (inTutorial)
         {
             if (tutorialNum == 0)
             {
-                AllowUserToInteract();
                 if (Input.GetMouseButtonUp(0))
                 {
                     CheckCardPosition();
@@ -57,6 +61,7 @@ public class TutorialManager : MonoBehaviour
         GameObject parent = currentInteractItem[currentInteractItemIndex].transform.parent.gameObject;
         Vector3 pos = parent.transform.position;
         parent.transform.position = new Vector3(pos.x, pos.y, 0);
+        startingPosition = parent.transform.position;
 
     }
 
@@ -82,7 +87,7 @@ public class TutorialManager : MonoBehaviour
         blackSprite.enabled = false;
         ResetInteractValues();
         inTutorial = true;
-        
+        AllowUserToInteract();
     }
 
     public void CheckCardPosition()

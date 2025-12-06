@@ -452,6 +452,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220178016}
   m_CullTransparentMesh: 1
+--- !u!1 &244578267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8153446227308066829, guid: c28e733f670574784bee308f566f0609, type: 3}
+  m_PrefabInstance: {fileID: 583019343}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &260529699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,11 +1033,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialTextboxInfos:
   - Messages:
-    - Hello
-    - Alpaca Fighters!
+    - Welcome to Alpaca Fighters!
+    - I'll teach you how to play this game!
+    - First, try moving a card by simply dragging them.
   - Messages:
-    - Hello
-    - Nihao
+    - Yes, that's right!
+    - Every wave you'll have some time to prepare.
+    - For now, press the play button to skip the time!
   tutorialTextIndex: 0
   tutorialTextGroupIndex: 0
   dialogueText: {fileID: 935276401}
@@ -1052,8 +1059,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentInteractItem:
   - {fileID: 1781277424}
-  - {fileID: 1781277424}
+  - {fileID: 244578267}
+  targetRadius: 1
   textbox: {fileID: 1950794867}
+  blackSprite: {fileID: 621113958}
 --- !u!1001 &451921618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1303,11 +1312,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4987999213361498566, guid: c28e733f670574784bee308f566f0609, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.92
+      value: 4.21
       objectReference: {fileID: 0}
     - target: {fileID: 4987999213361498566, guid: c28e733f670574784bee308f566f0609, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.16
+      value: -1.48
       objectReference: {fileID: 0}
     - target: {fileID: 4987999213361498566, guid: c28e733f670574784bee308f566f0609, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1469,7 +1478,7 @@ Transform:
   m_GameObject: {fileID: 621113955}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.14074074, y: -2.4046297, z: -9.3}
+  m_LocalPosition: {x: 0.14074074, y: -2.4046297, z: 5}
   m_LocalScale: {x: 18.997221, y: 5.2083335, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1901,7 +1910,7 @@ GameObject:
   m_Layer: 0
   m_Name: AlpacaCardTarget1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1914,7 +1923,7 @@ Transform:
   m_GameObject: {fileID: 967028907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.51, y: -1.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
