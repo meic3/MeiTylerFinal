@@ -33,6 +33,7 @@ public class PhaseManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "Tutorial")
         {
             isPaused = true;
+            bugGenerator.isPaused = true;
             inTutorial = true;
         }
 
@@ -109,7 +110,7 @@ public class PhaseManager : MonoBehaviour
         else
         {
             timerUI.SetActive(true);
-            remainingTime -= Time.deltaTime;
+            if(!isPaused){remainingTime -= Time.deltaTime;}
             int minutes = Mathf.FloorToInt(remainingTime / 60);
             int seconds = Mathf.FloorToInt(remainingTime % 60);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);

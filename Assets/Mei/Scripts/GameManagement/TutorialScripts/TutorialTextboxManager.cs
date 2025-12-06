@@ -39,7 +39,7 @@ public class TutorialTextboxManager : MonoBehaviour
         }
 
     }
-    void NextTextGroup()
+    public void NextTextGroup()
     {
         tutorialTextNum = GetGroupSize();
         tutorialTextGroupIndex++;

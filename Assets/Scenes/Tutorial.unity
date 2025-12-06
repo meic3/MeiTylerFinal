@@ -224,13 +224,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
+      propertyPath: setFly
+      value: 
+      objectReference: {fileID: 2381171907590807938, guid: daa9e6400baa3b94eac94a09a32aff95, type: 3}
+    - target: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
+      propertyPath: setGnat
+      value: 
+      objectReference: {fileID: 2381171907590807938, guid: 73b993ce52c475040853c34b950a1e4a, type: 3}
+    - target: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
       propertyPath: lineRend
       value: 
       objectReference: {fileID: 451921619}
     - target: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
+      propertyPath: setStinkbug
+      value: 
+      objectReference: {fileID: 2381171907590807938, guid: 8f7d086780d66214fb9c1ee4f40182d5, type: 3}
+    - target: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
       propertyPath: setCockroach
       value: 
       objectReference: {fileID: 2381171907590807938, guid: 378a62e178816524bb655a04f3244217, type: 3}
+    - target: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
+      propertyPath: setDungBeetle
+      value: 
+      objectReference: {fileID: 2381171907590807938, guid: c3830ef492af5e7448217b48dd9c4bae, type: 3}
     - target: {fileID: 3811418613209654000, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
       propertyPath: winLoseText
       value: 
@@ -277,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3811418613209654000, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
       propertyPath: waves.Array.data[0].bugSpawns.Array.data[0].bugType
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3811418613209654000, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
       propertyPath: waves.Array.data[1].bugSpawns.Array.data[0].bugType
@@ -1040,6 +1056,10 @@ MonoBehaviour:
     - Yes, that's right!
     - Every wave you'll have some time to prepare.
     - For now, press the play button to skip the time!
+  - Messages:
+    - 'You killed your fist bug. '
+    - Now, move your card on top of the upgrade card.
+    - This will make your Alpaca stronger!
   tutorialTextIndex: 0
   tutorialTextGroupIndex: 0
   dialogueText: {fileID: 935276401}
@@ -1060,9 +1080,18 @@ MonoBehaviour:
   currentInteractItem:
   - {fileID: 1781277424}
   - {fileID: 244578267}
-  targetRadius: 1
+  cardTargets:
+  - {fileID: 967028908}
+  - {fileID: 1554283513}
+  targetRadius: 5
+  tutorialNum: 0
   textbox: {fileID: 1950794867}
   blackSprite: {fileID: 621113958}
+  phaseManager: {fileID: 1087439944}
+  bugGenerator: {fileID: 1087439945}
+  tutorialTextboxManager: {fileID: 447778819}
+  panelThatCoversAllUI: {fileID: 2082971990}
+  panelThatCoversShopUI: {fileID: 622201345}
 --- !u!1001 &451921618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1597,7 +1626,7 @@ GameObject:
   - component: {fileID: 622201348}
   - component: {fileID: 622201347}
   m_Layer: 5
-  m_Name: Tutorial Screen
+  m_Name: TuTCover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1619,8 +1648,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 280.30002}
-  m_SizeDelta: {x: 0, y: -560.5999}
+  m_AnchoredPosition: {x: 846.35, y: 435.81}
+  m_SizeDelta: {x: -1692.7, y: -874.19995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &622201347
 MonoBehaviour:
@@ -1635,7 +1664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5137255}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1923,7 +1952,7 @@ Transform:
   m_GameObject: {fileID: 967028907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.51, y: -1.26, z: 0}
+  m_LocalPosition: {x: -4.88, y: -0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1981,6 +2010,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1087439944 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811418613209654000, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
+  m_PrefabInstance: {fileID: 179664695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5da1d7012d28a34e8a23f731fd47df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1087439945 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
+  m_PrefabInstance: {fileID: 179664695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d42637c82cb4404db5f9ddc34e8ed41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1228249845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,7 +2256,7 @@ GameObject:
   m_Layer: 0
   m_Name: AlpacaCardTarget2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2218,7 +2269,7 @@ Transform:
   m_GameObject: {fileID: 1554283512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.09, y: -1.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2536,6 +2587,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 622201346}
+  - {fileID: 2082971991}
   - {fileID: 1950794868}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2544,6 +2596,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2082971990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2082971991}
+  - component: {fileID: 2082971993}
+  - component: {fileID: 2082971992}
+  m_Layer: 5
+  m_Name: TuTCoverBig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2082971991
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082971990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2079722717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 250, y: 435.81}
+  m_SizeDelta: {x: -500, y: -874.19995}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2082971992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082971990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2082971993
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082971990}
+  m_CullTransparentMesh: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

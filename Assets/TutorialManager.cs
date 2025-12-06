@@ -6,15 +6,18 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> currentInteractItem;
 
+    [SerializeField] 
     private List<Transform> cardTargets;
 
     [SerializeField] 
     private float targetRadius = 1f;
 
     private int currentInteractItemIndex = 0;
+
+    private int currentTargetIndex = 0;
     private float currentOriginalZNum;
 
-    public const int tutorialNum = 0;
+    public int tutorialNum = 0;
 
     [SerializeField]
     private GameObject textbox;
@@ -26,6 +29,21 @@ public class TutorialManager : MonoBehaviour
 
     private bool inTutorial = true;
 
+    [SerializeField]
+    private PhaseManager phaseManager;
+
+    [SerializeField]
+    private BugGenerator bugGenerator;
+
+    public TutorialTextboxManager tutorialTextboxManager;
+
+    [SerializeField]
+    private GameObject panelThatCoversAllUI;
+
+    [SerializeField]
+    private GameObject panelThatCoversShopUI;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
@@ -33,6 +51,8 @@ public class TutorialManager : MonoBehaviour
         textbox.SetActive(true);
         blackSprite.enabled = true;
         inTutorial = false;
+        panelThatCoversShopUI.SetActive(false);
+        panelThatCoversShopUI.SetActive(true);
 
     }
     void Start()
@@ -53,6 +73,35 @@ public class TutorialManager : MonoBehaviour
                     CheckCardPosition();
                 }
             }
+            if (tutorialNum == 1)
+            {
+                panelThatCoversAllUI.SetActive(false);
+                panelThatCoversShopUI.SetActive(true);
+                phaseManager.isPaused = false;
+                bugGenerator.isPaused = false;
+                inTutorial = true;
+                if(bugGenerator.deadBug == 1)
+                {
+                    panelThatCoversAllUI.SetActive(true);
+                    panelThatCoversShopUI.SetActive(false);
+                    phaseManager.isPaused = true;
+                    bugGenerator.isPaused = true;
+                    FinishUserInteraction();
+                }
+            }
+            if (tutorialNum == 2)
+            {
+                inTutorial = true;
+                if (Input.GetMouseButtonUp(0))
+                {
+                    currentTargetIndex++;
+                    CheckCardPosition();
+                }
+            }
+        } 
+        else
+        {
+            panelThatCoversAllUI.SetActive(true);
         }
     }
 
@@ -67,7 +116,12 @@ public class TutorialManager : MonoBehaviour
 
     void FinishUserInteraction()
     {
-        currentInteractItemIndex ++;
+        tutorialNum ++;
+        textbox.SetActive(true);
+        blackSprite.enabled = true;
+        inTutorial = false;
+        //currentInteractItemIndex ++;
+        tutorialTextboxManager.NextTextGroup();
     }
 
     void ResetInteractValues()
@@ -92,6 +146,19 @@ public class TutorialManager : MonoBehaviour
 
     public void CheckCardPosition()
     {
+        float dist = Vector3.Distance(currentInteractItem[currentInteractItemIndex].transform.parent.gameObject.transform.position, cardTargets[currentTargetIndex].position);
+
+        if (dist <= targetRadius)
+        {
+            FinishUserInteraction();
+            
+        }
+        else
+        {
         
+            currentInteractItem[currentInteractItemIndex].transform.parent.gameObject.transform.position = startingPosition;
+        }
+    
+
     }
 }
