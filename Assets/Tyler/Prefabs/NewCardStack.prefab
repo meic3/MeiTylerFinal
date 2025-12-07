@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cards: []
+  overlappingCollidables: []
+  alpaca: {fileID: 0}
   dragging: 0
-  collidingCardStack: []
   stackState: 0
 --- !u!61 &1691590958308516654
 BoxCollider2D:

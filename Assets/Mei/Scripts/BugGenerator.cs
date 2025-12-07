@@ -55,7 +55,8 @@ public class BugGenerator : MonoBehaviour
     
     if (bugToSpawn != null)
     {
-        Instantiate(bugToSpawn, spawnPos, Quaternion.identity);
+        GameObject bug = Instantiate(bugToSpawn, spawnPos, Quaternion.identity);
+        bug.GetComponent<BugMove>().SetRoute(lineRend);
         bugsSpawnedRN++;
         bugsSpawned++; 
         bugsAlive++; 

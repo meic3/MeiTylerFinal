@@ -205,7 +205,7 @@ public class CardStack : Collidable
         */
     }
 
-    private float pushSpd = 1f;
+    private float pushSpd = 3f;
     private void PushUpdate()
     {
         if (overlappingCollidables.Count == 0) return;
@@ -216,6 +216,12 @@ public class CardStack : Collidable
         // move away from all colliding objects
         for (int i = 0; i < overlappingCollidables.Count; i++)
         {
+            if (overlappingCollidables[i] == null)
+            {
+                overlappingCollidables.RemoveAt(i);
+                continue;
+            }
+
             // does not interact with the stack being dragged
             CardStack cs = overlappingCollidables[i].gameObject.GetComponent<CardStack>();
             if (cs != null && cs == CardStackManager.Instance.stackBeingDragged) continue;
@@ -235,7 +241,16 @@ public class CardStack : Collidable
         Collidable collidable = col.GetComponent<Collidable>();
         if (collidable == null) return;
         if (overlappingCollidables.Contains(collidable))
+        {
             overlappingCollidables.Remove(collidable);
+
+            if (TryGetComponent<CardStack>(out CardStack cs))
+            {
+                cs.overlappingCollidables.Remove(this);
+            }
+        }
+
+
         /*
         CardStack cs = col.GetComponent<CardStack>();
         if (cs != null && collidingCardStacks.Contains(cs))
