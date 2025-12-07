@@ -1,7 +1,6 @@
+using System;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BeamAttack : MonoBehaviour, IAttack
 {
@@ -10,6 +9,15 @@ public class BeamAttack : MonoBehaviour, IAttack
 
     float distance = 30f;
     public LineRenderer beamPrefab;
+    public Type[] compatibleModifiers = new Type[]
+        {
+            typeof(AOEModifier), // doesnt work yet
+            typeof(CullModifier),
+            typeof(DamageModifier),
+            typeof(RangeModifier),
+            typeof(SlowModifier),
+            typeof(SpeedModifier)
+        };
 
 
     public void Attack(Alpaca alpaca)
@@ -47,5 +55,9 @@ public class BeamAttack : MonoBehaviour, IAttack
         // slow
         if (alpaca.stats.slow.value > 0)
         { bug.AddSlowInstance(alpaca.stats.slow.value, 2f); } // default 2 second slow for now
+    }
+    public Type[] CompatibleModifiers()
+    {
+        return compatibleModifiers;
     }
 }

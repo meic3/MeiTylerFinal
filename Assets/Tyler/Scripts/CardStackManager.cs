@@ -25,6 +25,7 @@ public class CardStackManager : MonoBehaviour
     public LayerMask cardLayer;
 
     public CardStack stackBeingDragged;
+    public bool showingOutline;
 
     void Update()
     {
@@ -47,12 +48,12 @@ public class CardStackManager : MonoBehaviour
             {
                 stackBeingDragged.OnLeftMouseUp();
             }
-
+            /*
             CardStack cardStack = TryHitCardStack();
             if (cardStack != null && cardStack.stackState == CardStack.StackState.Collapsed)
             {
                 cardStack.OnLeftMouseUp();
-            }
+            }*/
             else
             {
                 TryHitCard()?.OnLeftMouseUp();
@@ -64,6 +65,17 @@ public class CardStackManager : MonoBehaviour
         
         if (Input.GetMouseButtonUp(1))
             TryHitCardStack()?.OnRightMouseUp();
+
+        if (!showingOutline && stackBeingDragged != null)
+        {
+            ShowCardStacksOutlines(true);
+            showingOutline = true;
+        }
+        else if (showingOutline && stackBeingDragged == null)
+        {
+            ShowCardStacksOutlines(false);
+            showingOutline = false;
+        }
     }
     
 
@@ -81,5 +93,17 @@ public class CardStackManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, cardLayer);
 
         return hit.collider != null ? hit.collider.GetComponent<Card>() : null;
+    }
+
+    private void ShowCardStacksOutlines(bool b)
+    {
+        CardStack[] cardStacks = (CardStack[]) FindObjectsByType(typeof(CardStack), FindObjectsSortMode.None);
+        foreach (CardStack cardStack in cardStacks)
+        {
+            if (cardStack == stackBeingDragged) continue;
+            if (b && !stackBeingDragged.CanStackOnto(cardStack)) continue;
+            
+            cardStack.ShowOutline(b);
+        }
     }
 }

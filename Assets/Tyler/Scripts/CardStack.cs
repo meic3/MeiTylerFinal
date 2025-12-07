@@ -28,6 +28,8 @@ public class CardStack : Collidable
             // Move object, taking into account original offset.
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
+
+
         PushUpdate();
         //pushedThisFrame = false;
     }
@@ -48,6 +50,7 @@ public class CardStack : Collidable
 
         // Record the difference between the objects centre, and the clicked point on the camera plane.
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        offset += new Vector3(0, .1f, 0);
         dragging = true;
         UpdateCardsSortingOrder(dragBase);
 
@@ -57,6 +60,7 @@ public class CardStack : Collidable
     public void OnLeftMouseUp()
     {
         // Stop dragging
+        transform.position -= new Vector3(0, .1f, 0);
         dragging = false;
         UpdateCardsSortingOrder(normalBase);
 
@@ -65,7 +69,11 @@ public class CardStack : Collidable
         // dragging this stack onto another stack merges this stack onto the other stack
         if (overlappingCollidables.Count > 0)
         {
-            MergeInto(FindFirstCardStackInOverlappingCollidables());
+            CardStack cs = FindFirstCardStackInOverlappingCollidables();
+            if (cs != null && CanStackOnto(cs))
+            {
+                StackOnto(cs);
+            }
         }
     }
 
@@ -128,13 +136,8 @@ public class CardStack : Collidable
     }
 
     // merge this stack into another stack
-    private void MergeInto(CardStack cs)
+    private void StackOnto(CardStack cs)
     {
-        if (cs == null) return;
-
-        // cannot place cards on top of alpaca
-        if (cs.alpaca != null) return;
-
         foreach (Card card in Cards)
         {
             cs.AddCard(card);
@@ -258,4 +261,38 @@ public class CardStack : Collidable
         */
     }
     #endregion
+
+
+
+
+
+
+    // cardstackmanager - while card is being dragged, all stack the card can be dragged onto will show outline
+
+    [SerializeField] private SpriteRenderer outline;
+    public void ShowOutline(bool b)
+    {
+        outline.enabled = b;
+    }
+
+    // true if this cardstack can stack onto the other cardstack
+    public bool CanStackOnto(CardStack other)
+    {
+        if (other.alpaca != null) return false;
+        if (this.alpaca != null && other.alpaca != null) return false;
+
+        if (this.alpaca != null)
+        {
+            foreach (Card card in other.Cards)
+            {
+                if (card.TryGetComponent<ICardModifier>(out ICardModifier modifier) &&
+                    !this.alpaca.IsCompatibleWithModifier(modifier))
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }
