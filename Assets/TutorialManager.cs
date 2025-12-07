@@ -43,6 +43,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private GameObject panelThatCoversShopUI;
 
+    private float currentMoney;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -53,6 +55,7 @@ public class TutorialManager : MonoBehaviour
         inTutorial = false;
         panelThatCoversShopUI.SetActive(false);
         panelThatCoversShopUI.SetActive(true);
+        currentInteractItem[1].SetActive(false);
 
     }
     void Start()
@@ -70,7 +73,15 @@ public class TutorialManager : MonoBehaviour
             {
                 if (Input.GetMouseButtonUp(0))
                 {
-                    CheckCardPosition();
+                    if(CheckCardPosition() == true)
+                    {
+                        FinishUserInteraction();
+                        ResetInteractValues();
+                    }
+                    else
+                    {
+                        currentInteractItem[currentInteractItemIndex].transform.parent.gameObject.transform.position = startingPosition;
+                    }
                 }
             }
             if (tutorialNum == 1)
@@ -82,20 +93,69 @@ public class TutorialManager : MonoBehaviour
                 inTutorial = true;
                 if(bugGenerator.deadBug == 1)
                 {
+                    currentInteractItem[1].SetActive(true);
                     panelThatCoversAllUI.SetActive(true);
                     panelThatCoversShopUI.SetActive(false);
                     phaseManager.isPaused = true;
                     bugGenerator.isPaused = true;
+                    currentTargetIndex++;
                     FinishUserInteraction();
+                    
                 }
             }
             if (tutorialNum == 2)
             {
                 inTutorial = true;
+                
                 if (Input.GetMouseButtonUp(0))
                 {
-                    currentTargetIndex++;
-                    CheckCardPosition();
+                    
+                    if(CheckCardPosition() == true)
+                    {
+                        phaseManager.isPaused = false;
+                        bugGenerator.isPaused = false;
+                    }
+                    else
+                    {
+                        currentInteractItem[currentInteractItemIndex].transform.parent.gameObject.transform.position = startingPosition;
+                    }
+                }
+
+                if(bugGenerator.deadBug == 5)
+                {
+                    panelThatCoversAllUI.SetActive(true);
+                    panelThatCoversShopUI.SetActive(false);
+                    phaseManager.isPaused = true;
+                    bugGenerator.isPaused = true;
+                    currentMoney = PlayerMoney.money;
+                    FinishUserInteraction();
+                    
+                }
+
+                
+            }
+            if (tutorialNum == 3)
+            {
+                if (PlayerMoney.money != currentMoney)
+                {
+                    panelThatCoversAllUI.SetActive(false);
+                    panelThatCoversShopUI.SetActive(false);
+                    Debug.Log(PlayerMoney.money);
+                    FinishUserInteraction();
+                }
+            }
+            if (tutorialNum == 4)
+            {
+                
+                if (Input.GetMouseButtonUp(0))
+                {
+                    GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("Card");
+                    int count = taggedObjects.Length;
+                    Debug.Log(count);
+                    if (count>= 5)
+                    {
+                        FinishUserInteraction();
+                    }
                 }
             }
         } 
@@ -139,24 +199,43 @@ public class TutorialManager : MonoBehaviour
     {
         textbox.SetActive(false);
         blackSprite.enabled = false;
-        ResetInteractValues();
         inTutorial = true;
-        AllowUserToInteract();
+        if (tutorialNum == 0)
+        {
+            AllowUserToInteract();
+        }
+        if (tutorialNum == 1)
+        {
+            AllowUserToInteract();
+        }
+        if (tutorialNum == 2)
+        {
+            
+             
+        }
+        if (tutorialNum == 3)
+        {
+            
+             
+        }
+        
+        
     }
 
-    public void CheckCardPosition()
+    public bool CheckCardPosition()
     {
         float dist = Vector3.Distance(currentInteractItem[currentInteractItemIndex].transform.parent.gameObject.transform.position, cardTargets[currentTargetIndex].position);
 
         if (dist <= targetRadius)
         {
-            FinishUserInteraction();
+            return true;
+            
             
         }
         else
         {
-        
-            currentInteractItem[currentInteractItemIndex].transform.parent.gameObject.transform.position = startingPosition;
+            return false;
+            
         }
     
 

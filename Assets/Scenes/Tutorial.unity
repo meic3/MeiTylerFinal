@@ -236,6 +236,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 451921619}
     - target: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
+      propertyPath: spawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648001214411130210, guid: 5dd8060c416a562448d933cc4560a404, type: 3}
       propertyPath: setStinkbug
       value: 
       objectReference: {fileID: 2381171907590807938, guid: 8f7d086780d66214fb9c1ee4f40182d5, type: 3}
@@ -1051,6 +1055,8 @@ MonoBehaviour:
   - Messages:
     - Welcome to Alpaca Fighters!
     - I'll teach you how to play this game!
+    - In this game, you win by killing all the bugs that moves through the path.
+    - You will lose if a bug reaches the end of the path.
     - First, try moving a card by simply dragging them.
   - Messages:
     - Yes, that's right!
@@ -1060,6 +1066,22 @@ MonoBehaviour:
     - 'You killed your fist bug. '
     - Now, move your card on top of the upgrade card.
     - This will make your Alpaca stronger!
+  - Messages:
+    - There are different Alpacas and upgrade cards.
+    - Try finding the best combination of cards!
+    - You can right click your Alpaca to see what cards are stacked.
+    - And click again to close.
+  - Messages:
+    - You can also sell cards by dragging them to the "Sell card" button.
+    - This gives you money!
+    - Money can buy you packs.
+  - Messages:
+    - To purchase packs, click on the shop button.
+    - Click on a pack you want to purchase, and drag it to anywhere on the screen.
+    - You can open packs by right clicking on the placed pack.
+  - Messages:
+    - Now you are ready to play the game!
+    - Good luck on your journey to protect your Alpaca kingdom!
   tutorialTextIndex: 0
   tutorialTextGroupIndex: 0
   dialogueText: {fileID: 935276401}
@@ -1341,11 +1363,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4987999213361498566, guid: c28e733f670574784bee308f566f0609, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.21
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 4987999213361498566, guid: c28e733f670574784bee308f566f0609, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.48
+      value: -3.15
       objectReference: {fileID: 0}
     - target: {fileID: 4987999213361498566, guid: c28e733f670574784bee308f566f0609, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1507,8 +1529,8 @@ Transform:
   m_GameObject: {fileID: 621113955}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.14074074, y: -2.4046297, z: 5}
-  m_LocalScale: {x: 18.997221, y: 5.2083335, z: 1}
+  m_LocalPosition: {x: 0.14074074, y: 0.04, z: 5}
+  m_LocalScale: {x: 18.997221, y: 10.21, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2269,9 +2291,9 @@ Transform:
   m_GameObject: {fileID: 1554283512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.09, y: -1.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.28, y: -3.77, z: 0}
+  m_LocalScale: {x: 4.36, y: 4.36, z: 4.36}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1228249846}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
