@@ -19,7 +19,11 @@ public class BugGenerator : MonoBehaviour
     private int bugsSpawned = 0;
     private int bugsAlive = 0;
 
+    public int deadBug = 0;
+
     private Vector3 spawnPos;
+
+    public bool isPaused = false;
 
 
     void Start()
@@ -29,7 +33,7 @@ public class BugGenerator : MonoBehaviour
 
     void Update()
     {
-        if (canGenerate && currentWave != null)
+        if (canGenerate && currentWave != null && !isPaused)
         {
             spawnCount += Time.deltaTime;
         }
@@ -109,6 +113,7 @@ public class BugGenerator : MonoBehaviour
     public void OnBugKilled()
     {
         bugsAlive--;
+        deadBug++;
     }
 
 
