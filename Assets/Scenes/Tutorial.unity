@@ -1114,6 +1114,7 @@ MonoBehaviour:
   tutorialTextboxManager: {fileID: 447778819}
   panelThatCoversAllUI: {fileID: 2082971990}
   panelThatCoversShopUI: {fileID: 622201345}
+  coverSquare: {fileID: 621113955}
 --- !u!1001 &451921618
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.AI;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class TutorialTextboxManager : MonoBehaviour
 {
@@ -41,10 +42,12 @@ public class TutorialTextboxManager : MonoBehaviour
     }
     public void NextTextGroup()
     {
-        tutorialTextNum = GetGroupSize();
+        Debug.Log("New Text Group");
         tutorialTextGroupIndex++;
+        tutorialTextNum = GetGroupSize();
         tutorialTextIndex = 0;
         UpdateTextMessage();
+
     }
 
     void UpdateTextMessage()

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -44,6 +45,11 @@ public class TutorialManager : MonoBehaviour
     private GameObject panelThatCoversShopUI;
 
     private float currentMoney;
+
+    private int clickCount = 0;
+
+    [SerializeField]
+    private GameObject coverSquare;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -136,23 +142,35 @@ public class TutorialManager : MonoBehaviour
             }
             if (tutorialNum == 3)
             {
+                if (Input.GetMouseButtonDown(1))
+                {
+
+                    clickCount++;
+
+                    if (clickCount >= 3)
+                    {
+                        FinishUserInteraction();
+                    }
+                    
+                }
+            }
+
+            if (tutorialNum == 4)
+            {
                 if (PlayerMoney.money != currentMoney)
                 {
-                    panelThatCoversAllUI.SetActive(false);
-                    panelThatCoversShopUI.SetActive(false);
+                    
                     Debug.Log(PlayerMoney.money);
                     FinishUserInteraction();
                 }
             }
-            if (tutorialNum == 4)
+            if (tutorialNum == 5)
             {
                 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("Card");
-                    int count = taggedObjects.Length;
-                    Debug.Log(count);
-                    if (count>= 5)
+                    int count = findObjectInLayer("Card");
+                    if (count >= 5)
                     {
                         FinishUserInteraction();
                     }
@@ -218,6 +236,16 @@ public class TutorialManager : MonoBehaviour
             
              
         }
+        if (tutorialNum == 5)
+        {
+            panelThatCoversAllUI.SetActive(false);
+            panelThatCoversShopUI.SetActive(false);
+            coverSquare.SetActive(false);
+        }
+        if (tutorialNum == 6)
+        {
+            SceneManager.LoadScene("Mei_TitleScreen");
+        }
         
         
     }
@@ -239,5 +267,23 @@ public class TutorialManager : MonoBehaviour
         }
     
 
+    }
+
+    public int findObjectInLayer(string layerName)
+    {
+        int layer = LayerMask.NameToLayer(layerName);
+
+        int count = 0;
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.layer == layer)
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 }
