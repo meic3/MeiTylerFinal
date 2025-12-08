@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using TMPro;
 
 public class CardStackManager : MonoBehaviour
 {
@@ -27,8 +28,44 @@ public class CardStackManager : MonoBehaviour
     public CardStack stackBeingDragged;
     public bool showingOutline;
 
+    [SerializeField] TextMeshProUGUI hoveringCardNameText;
+    [SerializeField] TextMeshProUGUI hoveringCardDescriptionText;
+
+    public Card GetHoveringCard()
+    {
+        if (stackBeingDragged != null)
+        {
+            return stackBeingDragged.Cards[stackBeingDragged.Cards.Count-1];
+        }
+        CardStack hoveringCardStack = TryHitCardStack();
+        if (hoveringCardStack != null)
+        {
+            if (hoveringCardStack.stackState == CardStack.StackState.Collapsed)
+                return hoveringCardStack.Cards[hoveringCardStack.Cards.Count-1];
+            else if (hoveringCardStack.stackState == CardStack.StackState.Expanded)
+            {
+                Card hoveringCard = TryHitCard();
+                if (hoveringCard != null)
+                    return hoveringCard;
+            }
+        }
+        return null;
+    }
     void Update()
     {
+        Card hoveringCard = GetHoveringCard();
+        if (hoveringCard != null)
+        {
+            hoveringCardNameText.text = hoveringCard.name;
+            hoveringCardDescriptionText.text = hoveringCard.description;
+        }
+        else
+        {
+            hoveringCardNameText.text = "";
+            hoveringCardDescriptionText.text = "";
+        }
+
+
         if (Input.GetMouseButtonDown(0))
         {
             CardStack cardStack = TryHitCardStack();
