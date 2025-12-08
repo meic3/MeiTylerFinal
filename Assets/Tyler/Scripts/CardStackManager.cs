@@ -30,6 +30,8 @@ public class CardStackManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI hoveringCardNameText;
     [SerializeField] TextMeshProUGUI hoveringCardDescriptionText;
+    [SerializeField] GameObject ShopUI;
+    [SerializeField] GameObject SellUI;
 
     public Card GetHoveringCard()
     {
@@ -54,7 +56,7 @@ public class CardStackManager : MonoBehaviour
     void Update()
     {
         Card hoveringCard = GetHoveringCard();
-        if (hoveringCard != null)
+        if (hoveringCard != null && hoveringCardNameText != null && hoveringCardDescriptionText != null)
         {
             hoveringCardNameText.text = hoveringCard.name;
             hoveringCardDescriptionText.text = hoveringCard.description;
@@ -103,6 +105,8 @@ public class CardStackManager : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
             TryHitCardStack()?.OnRightMouseUp();
 
+
+        /*
         if (!showingOutline && stackBeingDragged != null)
         {
             ShowCardStacksOutlines(true);
@@ -112,7 +116,26 @@ public class CardStackManager : MonoBehaviour
         {
             ShowCardStacksOutlines(false);
             showingOutline = false;
-        }
+        }*/
+    }
+
+    public void SetStackBeingDragged(CardStack cs)
+    {
+        if (cs == null) return;
+        stackBeingDragged = cs;
+        ShowCardStacksOutlines(true);
+        ShopUI.SetActive(false);
+        SellUI.SetActive(true);
+        SellUI.GetComponent<SellCard>().ShowPrice(stackBeingDragged);
+    }
+
+    public void ClearStackBeingDragged()
+    {
+        stackBeingDragged = null;
+        ShowCardStacksOutlines(false);
+        SellUI.GetComponent<SellCard>().SellCardStack();
+        ShopUI.SetActive(true);
+        SellUI.SetActive(false);
     }
     
 
