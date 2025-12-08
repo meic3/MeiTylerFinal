@@ -21,8 +21,6 @@ public class PackBuying : MonoBehaviour
     void Start()
     {
         canvas = GetComponentInParent<Canvas>();
-        
-  
     }
 
     void Update()
@@ -42,18 +40,13 @@ public class PackBuying : MonoBehaviour
             {
                 if (PlayerMoney.money >= packData.packPrice)
                 {
-                GameObject boughtPack = Instantiate(packData.packObject);
-                boughtPack.transform.localPosition = worldPos;
-                rectTransform.position = origPos;
-                mouseHold = false;
-                PlayerMoney.money -= packData.packPrice;
-                }
-                else
-                {
-                    rectTransform.position = origPos;
-                    mouseHold = false;
+                    GameObject boughtPack = Instantiate(packData.packObject);
+                    boughtPack.transform.localPosition = worldPos;
+                    PlayerMoney.money -= packData.packPrice;
                 }
 
+                rectTransform.position = origPos;
+                mouseHold = false;
             }
         }
     }
