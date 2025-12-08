@@ -48,13 +48,13 @@ public class CardStack : Collidable
     {
         if (stackState == StackState.Expanded) return;
 
-        // Record the difference between the objects centre, and the clicked point on the camera plane.
+        // Record the difference between the objects center and the clicked point on the camera plane.
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         offset += new Vector3(0, .1f, 0);
         dragging = true;
         UpdateCardsSortingOrder(dragBase);
 
-        CardStackManager.Instance.stackBeingDragged = this;
+        CardStackManager.Instance.SetStackBeingDragged(this);
     }
 
     public void OnLeftMouseUp()
@@ -64,7 +64,7 @@ public class CardStack : Collidable
         dragging = false;
         UpdateCardsSortingOrder(normalBase);
 
-        CardStackManager.Instance.stackBeingDragged = null;
+        CardStackManager.Instance.ClearStackBeingDragged();
 
         // dragging this stack onto another stack merges this stack onto the other stack
         if (overlappingCollidables.Count > 0)

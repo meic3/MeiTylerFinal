@@ -65,7 +65,7 @@ public class PhaseManager : MonoBehaviour
 
     public void InGame()
     {
-        timerUI.SetActive(false);
+        //timerUI.SetActive(false);
         isInGame = true;
         
         if (bugGenerator.IsWaveComplete())
@@ -109,7 +109,7 @@ public class PhaseManager : MonoBehaviour
         }
         else
         {
-            timerUI.SetActive(true);
+            //timerUI.SetActive(true);
             if(!isPaused){remainingTime -= Time.deltaTime;}
             int minutes = Mathf.FloorToInt(remainingTime / 60);
             int seconds = Mathf.FloorToInt(remainingTime % 60);

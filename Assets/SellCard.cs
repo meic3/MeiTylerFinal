@@ -1,10 +1,16 @@
 using UnityEngine;
+using TMPro;
 
 public class SellCard : MonoBehaviour
 {
     // cardStack that is being dragged and colliding with this object
     public CardStack cardStack;
+    [SerializeField] TextMeshProUGUI sellPriceText;
 
+    public void ShowPrice(CardStack cs)
+    {
+        sellPriceText.text = "$" + GetCardStackPrice(cs).ToString();
+    }
     private void OnTriggerEnter2D(Collider2D col)
     {
         CardStack cs = col.GetComponent<CardStack>();
@@ -22,18 +28,24 @@ public class SellCard : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void SellCardStack()
     {
-        if (cardStack != null && Input.GetMouseButtonUp(0))
+        if (cardStack != null)
         {
-            // sell all cards in card stack
-            for (int i=0; i<cardStack.Cards.Count; i++)
-            {
-                PlayerMoney.money += cardStack.Cards[i].cardPrice;
-                //Destroy(cardStack.Cards[i]);
-            }
+            PlayerMoney.money += GetCardStackPrice(cardStack);
+            //Debug.Log(cardStack);
             Destroy(cardStack.gameObject);
             cardStack = null;
         }
+    }
+
+    private float GetCardStackPrice(CardStack cs)
+    {
+        float ret = 0f;
+        for (int i=0; i<cs.Cards.Count; i++)
+            {
+                ret += cs.Cards[i].cardPrice;
+            }
+        return ret;
     }
 }

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public string name = "Default Name";
+    public string description = "Default Description";
     public float cardPrice = 1f;
 
 
