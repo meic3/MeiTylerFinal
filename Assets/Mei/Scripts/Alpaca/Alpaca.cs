@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Alpaca : MonoBehaviour
@@ -106,4 +107,10 @@ public class Alpaca : MonoBehaviour
         }
     }
     #endregion
+
+
+    public bool IsCompatibleWithModifier(ICardModifier modifier)
+    {
+        return attack.CompatibleModifiers().Contains(modifier.GetType());
+    }
 }

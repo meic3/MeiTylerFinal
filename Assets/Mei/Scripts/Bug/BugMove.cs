@@ -4,7 +4,6 @@ public class BugMove : MonoBehaviour
 {
     Bug bug;
 
-    [SerializeField] 
     private LineRenderer lineRend;
     [SerializeField] 
     private float moveSpeed = 1f;
@@ -53,5 +52,10 @@ public class BugMove : MonoBehaviour
         float lerpT = scaledT - index;
 
         return Vector3.Lerp(pts[index], pts[nextIndex], lerpT);
+    }
+
+    public void SetRoute(LineRenderer route)
+    {
+        lineRend = route;
     }
 }

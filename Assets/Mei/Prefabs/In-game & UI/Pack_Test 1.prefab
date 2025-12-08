@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2384868106258881392}
   - component: {fileID: 5605221901744268440}
   - component: {fileID: 6038339080228081652}
+  - component: {fileID: 215090739545272803}
   m_Layer: 0
   m_Name: Pack_Test 1
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3197773748099215640}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.25, y: -0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -103,10 +104,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listedCards:
+  - {fileID: 7468783304547847155, guid: b01d5945e6fde4a49b73e258d06fa5ea, type: 3}
+  - {fileID: 5644962750459231878, guid: a19506f1b3b95489a83d8d1a6ba222c8, type: 3}
+  - {fileID: 5644962750459231878, guid: 91b51262553bb8641b442f82d229a6a4, type: 3}
+  - {fileID: 7973049796088721298, guid: 74a9d8956ee4b4b15853392fcba4d8dc, type: 3}
+  - {fileID: 4481446064055160974, guid: 89a5c7a842c42d64f8a1ba4ec8577fc7, type: 3}
+  - {fileID: 8357959933983192309, guid: 6435baab3352a4c6bb6a0e5c5a7976bc, type: 3}
+  - {fileID: 8357959933983192309, guid: 9ccbcb04f6327f347bf3523fa7416d90, type: 3}
   - {fileID: 6857987410759336642, guid: 115d3cf0d8c11437a9f42ab3f028c4ab, type: 3}
+  - {fileID: 5977501004336666824, guid: c14a9d76b63e447f59a7d730679018a6, type: 3}
+  - {fileID: 5850008406166386198, guid: 0e5fbcade8490a042ae4e0cd83daca8b, type: 3}
+  - {fileID: 5850008406166386198, guid: f0886f7ece4dd434a905f1ceb4eb6591, type: 3}
+  - {fileID: 8357959933983192309, guid: 2605abc7fe635634b878825c44647b86, type: 3}
   - {fileID: 8094221545319690972, guid: fa1e63125e6d047d08d7eb85ecff05b3, type: 3}
-  - {fileID: 8153446227308066829, guid: c28e733f670574784bee308f566f0609, type: 3}
   - {fileID: 5850008406166386198, guid: 68d5f5350948d4cf999e92de4591a7b2, type: 3}
+  - {fileID: 8153446227308066829, guid: c28e733f670574784bee308f566f0609, type: 3}
   cardDistFromPack: 1
 --- !u!61 &5605221901744268440
 BoxCollider2D:
@@ -181,3 +193,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &215090739545272803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197773748099215640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3878d70840df04f65bdf54a2a5f6736f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

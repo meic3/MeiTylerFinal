@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6226480490703180549}
   - component: {fileID: 4151184966138813025}
   - component: {fileID: 496767422691045364}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Range
   m_TagString: shootrange
   m_Icon: {fileID: 0}
@@ -181,6 +181,8 @@ MonoBehaviour:
       value: 10
     speed:
       value: 0.3
+    AOE:
+      value: 1
     slow:
       value: 0
     attackCount:
@@ -189,6 +191,9 @@ MonoBehaviour:
       value: 0
     cull:
       value: 0
+    pierce:
+      value: 0
+    homingProjectile: 0
   rangeHelper: {fileID: 0}
 --- !u!114 &5536808119029955132
 MonoBehaviour:

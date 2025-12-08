@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,18 @@ public class ProjectileAttack : MonoBehaviour, IAttack
 {
 
     public GameObject projectilePrefab;
+    public Type[] compatibleModifiers = new Type[]
+        {
+            typeof(AOEModifier), // only work with projectile with aoe splash at the end. maybe make bullet bigger? or have seperate AOEProjectileAttack class
+            typeof(ChainModifier),
+            typeof(CullModifier),
+            typeof(DamageModifier),
+            typeof(HomingProjectileModifier), // kind scuffed
+            typeof(PierceModifier),
+            typeof(RangeModifier),
+            typeof(SlowModifier),
+            typeof(SpeedModifier)
+        };
 
     // shoot projectiles at bug(s)
     public void Attack(Alpaca alpaca)
@@ -20,5 +33,10 @@ public class ProjectileAttack : MonoBehaviour, IAttack
             projectile.Init(target, alpaca);
         }
 
+    }
+
+    public Type[] CompatibleModifiers()
+    {
+        return compatibleModifiers;
     }
 }

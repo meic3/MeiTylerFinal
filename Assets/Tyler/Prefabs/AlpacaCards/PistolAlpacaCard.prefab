@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6226480490703180549}
   - component: {fileID: 4151184966138813025}
   - component: {fileID: 496767422691045364}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Range
   m_TagString: shootrange
   m_Icon: {fileID: 0}
@@ -181,6 +181,8 @@ MonoBehaviour:
       value: 3
     speed:
       value: 2
+    AOE:
+      value: 1
     slow:
       value: 0
     attackCount:
