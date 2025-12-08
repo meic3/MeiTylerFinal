@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 740740348770314946}
   - component: {fileID: 1578035680775103800}
   m_Layer: 0
-  m_Name: Cockroach1
+  m_Name: Fly
   m_TagString: bug
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.97, y: 1.39, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_LocalScale: {x: 0.11000001, y: 0.11000001, z: 0.11000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -8250303653220885025, guid: 0ac0ba59d5c4ddb4abd90e8a028e97a5, type: 3}
+  m_Sprite: {fileID: 5446287287645062062, guid: b39cbf584b122524c9c2d45443bb3ca4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRend: {fileID: 7676989526399322327, guid: deeb20a8383bf484b934480e3c79c1fb, type: 3}
-  moveSpeed: 0.1
+  moveSpeed: 0.05
 --- !u!114 &1578035680775103800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57399991ac4d7144aa350b9e5b72a5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 30
-  moneyReward: 5
+  maxHP: 15
+  moneyReward: 2
   Died: 0

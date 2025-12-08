@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Mei/Mei_TitleScreen.unity
+    path: Assets/Scenes/Mei_TitleScreen.unity
     guid: 20cc6b83f806d1a48a4e2e659f51b0fc
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Mei/Mei_PrototypeScene.unity
+    path: Assets/Mei/TestScenes/Mei_PrototypeScene.unity
     guid: e675be7a99ef40a48ba5747444e6d8ad
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 5c54726044fee7d418e1de07b61d0465
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

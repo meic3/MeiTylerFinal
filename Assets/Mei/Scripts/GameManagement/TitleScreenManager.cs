@@ -32,8 +32,23 @@ public class TitleScreenManager : MonoBehaviour
         levelSelection.active = false;
     }
 
-    public void GotoLevel(int levelNum)
+    public void GotoLevel1(int levelNum)
     {
-        SceneManager.LoadScene("Mei_PrototypeScene");
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void GotoLevel2(int levelNum)
+    {
+        SceneManager.LoadScene("Level2");
+    }
+
+    public void GotoLevel3(int levelNum)
+    {
+        SceneManager.LoadScene("Level3");
+    }
+
+    public void GotoTutorial(int levelNum)
+    {
+        SceneManager.LoadScene("Tutorial");
     }
 }
