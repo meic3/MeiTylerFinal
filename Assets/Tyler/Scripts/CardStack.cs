@@ -13,11 +13,11 @@ public class CardStack : Collidable
 
 
     private BoxCollider2D col;
-    private float cardFollowSpeed = 13f;
+    private float cardFollowSpeed = 20f;
     // per-card extra local offsets used to create a trailing/lag effect without changing parent
     private List<Vector3> extraLocalOffsets = new List<Vector3>();
     private Vector3 prevPosition;
-    private float perCardLagMultiplier = 0.2f;
+    private float perCardLagMultiplier = 0.4f;
 
 
     void Start()
