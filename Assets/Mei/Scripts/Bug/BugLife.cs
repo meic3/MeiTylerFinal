@@ -3,7 +3,7 @@ using UnityEngine;
 public class BugLife : MonoBehaviour
 {
     public float maxHP = 10f;
-    private float currentHP;
+    public float currentHP;
     public int moneyReward = 5;
     public bool Died = false;
 

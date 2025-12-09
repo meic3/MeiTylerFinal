@@ -4,7 +4,7 @@ public class Card : MonoBehaviour
 {
     public string name = "Default Name";
     public string description = "Default Description";
-    public float cardPrice = 1f;
+    public float cardSellPrice = 1f;
 
 
 

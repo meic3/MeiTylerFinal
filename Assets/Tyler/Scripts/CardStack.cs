@@ -13,12 +13,22 @@ public class CardStack : Collidable
 
 
     private BoxCollider2D col;
+    private float cardFollowSpeed = 13f;
+    // per-card extra local offsets used to create a trailing/lag effect without changing parent
+    private List<Vector3> extraLocalOffsets = new List<Vector3>();
+    private Vector3 prevPosition;
+    private float perCardLagMultiplier = 0.2f;
 
 
     void Start()
     {
         col = GetComponent<BoxCollider2D>();
         col.enabled = true;
+        prevPosition = transform.position;
+
+        // initialize offsets to match existing cards (if any)
+        extraLocalOffsets.Clear();
+        for (int i = 0; i < Cards.Count; i++) extraLocalOffsets.Add(Vector3.zero);
     }
 
     void Update()
@@ -26,7 +36,35 @@ public class CardStack : Collidable
         if (dragging)
         {
             // Move object, taking into account original offset.
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            targetPos.z = transform.position.z;
+            transform.position = targetPos;
+
+            // While dragging (collapsed stacks only), make cards lag behind the stack's current position.
+            if (stackState == StackState.Collapsed)
+            {
+                // movement delta since last frame
+                Vector3 delta = transform.position - prevPosition;
+
+                // ensure offsets list matches cards count
+                while (extraLocalOffsets.Count < Cards.Count) extraLocalOffsets.Add(Vector3.zero);
+                while (extraLocalOffsets.Count > Cards.Count) extraLocalOffsets.RemoveAt(extraLocalOffsets.Count - 1);
+
+                for (int i = 0; i < Cards.Count; i++)
+                {
+                    // when the stack moves by delta, push an opposite offset onto each card so it stays behind
+                    float multiplier = 1f + (Cards.Count-1-i) * perCardLagMultiplier;
+                    extraLocalOffsets[i] -= delta * multiplier;
+
+                    // decay the extra offset back to zero over time
+                    extraLocalOffsets[i] = Vector3.Lerp(extraLocalOffsets[i], Vector3.zero, Time.deltaTime * cardFollowSpeed);
+
+                    // base collapsed local position
+                    Vector3 baseLocal = new Vector3(0, i * 0.05f, 0);
+                    Cards[i].transform.localPosition = baseLocal + extraLocalOffsets[i];
+                }
+            }
+            prevPosition = transform.position;
         }
 
 
@@ -55,6 +93,12 @@ public class CardStack : Collidable
         UpdateCardsSortingOrder(dragBase);
 
         CardStackManager.Instance.SetStackBeingDragged(this);
+        
+        if (alpaca != null)
+        {
+            alpaca.rangeIndicator.transform.localScale = new Vector3(alpaca.stats.range.value * 2, alpaca.stats.range.value * 2, 1);
+            alpaca.rangeIndicator.SetActive(true);
+        }
     }
 
     public void OnLeftMouseUp()
@@ -64,7 +108,12 @@ public class CardStack : Collidable
         dragging = false;
         UpdateCardsSortingOrder(normalBase);
 
+        // Snap cards back into their proper local positions when dragging stops.
+        CollapseStack();
+
         CardStackManager.Instance.ClearStackBeingDragged();
+
+        if (alpaca != null) alpaca.rangeIndicator.SetActive(false);
 
         // dragging this stack onto another stack merges this stack onto the other stack
         if (overlappingCollidables.Count > 0)
@@ -103,10 +152,12 @@ public class CardStack : Collidable
 
         float spread = 0.7f;
 
+        // ensure offsets list matches cards
+        while (extraLocalOffsets.Count < Cards.Count) extraLocalOffsets.Add(Vector3.zero);
         for (int i = 0; i < Cards.Count; i++)
         {
+            extraLocalOffsets[i] = Vector3.zero;
             Cards[i].transform.localPosition = new Vector3(0, -i * spread, 0);
-            //Cards[i].transform.localPosition = new Vector3(0, -(Cards.Count-i-1) * spread, 0);
             Cards[i].EnableInteraction(true);
         }
     }
@@ -117,8 +168,11 @@ public class CardStack : Collidable
 
         //collider.enabled = true;
 
+        // ensure offsets list matches cards
+        while (extraLocalOffsets.Count < Cards.Count) extraLocalOffsets.Add(Vector3.zero);
         for (int i = 0; i < Cards.Count; i++)
         {
+            extraLocalOffsets[i] = Vector3.zero;
             Cards[i].transform.localPosition = new Vector3(0, i * 0.05f, 0);
             Cards[i].EnableInteraction(false);
         }
@@ -166,6 +220,8 @@ public class CardStack : Collidable
     public void AddCard(Card card)
     {
         Cards.Add(card);
+        // keep per-card offsets in sync
+        extraLocalOffsets.Add(Vector3.zero);
         card.transform.SetParent(this.transform);
         card.CurrentStack = this;
 
@@ -178,6 +234,9 @@ public class CardStack : Collidable
 
     public void RemoveCard(Card card)
     {
+        int idx = Cards.IndexOf(card);
+        if (idx >= 0 && idx < extraLocalOffsets.Count)
+            extraLocalOffsets.RemoveAt(idx);
         Cards.Remove(card);
 
         if (card.tag == "alpaca")

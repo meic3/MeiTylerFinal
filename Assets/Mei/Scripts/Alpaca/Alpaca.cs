@@ -40,8 +40,16 @@ public class Alpaca : MonoBehaviour
 
     // scaling collider based on range
     [HideInInspector] public EnemyInRangeHelper rangeHelper;
+    [HideInInspector] public GameObject rangeIndicator;
 
-    void RangeStart() { rangeHelper = GetComponentInChildren<EnemyInRangeHelper>(); }
+    void RangeStart()
+    {
+        rangeHelper = GetComponentInChildren<EnemyInRangeHelper>();
+        rangeIndicator = transform.Find("RangeIndicator").gameObject;
+        /*rangeLineRenderer = GetComponentInChildren<LineRenderer>();
+        rangeLineRenderer.loop = true;
+        rangeLineRenderer.positionCount = segments;*/
+    }
 
     void UpdateRange()
     {
@@ -49,7 +57,35 @@ public class Alpaca : MonoBehaviour
         rangeHelper.SetRadius(stats.range.value);
     }
 
+    /*
+    // show range circle
+
+    private int segments = 32;
+    LineRenderer rangeLineRenderer;
+    public void ShowRange()
+    {
+        rangeLineRenderer.enabled = true;
+        float radius = stats.range.value;
+        float angleStep = 360f / segments;
+
+        for (int i = 0; i < segments; i++)
+        {
+            float angle = Mathf.Deg2Rad * (angleStep * i);
+            float x = Mathf.Cos(angle) * radius;
+            float y = Mathf.Sin(angle) * radius;
+
+            rangeLineRenderer.SetPosition(i, new Vector3(x, y, 0) + transform.position);
+        }
+    }
+
+    public void HideRange()
+    {
+        rangeLineRenderer.enabled = false;
+    }*/
+
     #endregion
+
+    
 
     #region tracking modifiers
 
@@ -113,4 +149,6 @@ public class Alpaca : MonoBehaviour
     {
         return attack.CompatibleModifiers().Contains(modifier.GetType());
     }
+
+
 }
