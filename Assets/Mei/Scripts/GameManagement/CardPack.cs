@@ -57,6 +57,7 @@ public class CardPack : MonoBehaviour
 
     void OpenPackTest()
     {
+        SFXManager.Instance.PlaySound(SFXManager.SoundType.CardPlace);
         cardCount ++;
         var radians = 2* MathF.PI / cardNum * cardCount;
         //Debug.Log(radians);

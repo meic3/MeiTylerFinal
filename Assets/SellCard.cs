@@ -32,6 +32,7 @@ public class SellCard : MonoBehaviour
     {
         if (cardStack != null)
         {
+            SFXManager.Instance.PlaySound(SFXManager.SoundType.CoinGain);
             PlayerMoney.money += GetCardStackPrice(cardStack);
             //Debug.Log(cardStack);
             Destroy(cardStack.gameObject);

@@ -73,12 +73,14 @@ public class PhaseManager : MonoBehaviour
         if (bugGenerator.IsWaveComplete())
         {
             PlayerMoney.money += bugGenerator.currentWave.reward;
+            SFXManager.Instance.PlaySound(SFXManager.SoundType.CoinGain);
             currentWaveNum++;
             
             if (currentWaveNum >= waves.Length)
             {
                 // beateeeeed theeeeee levellllllll
                 winLoseText.text = "You Win!!!!";
+                SFXManager.Instance.PlaySound(SFXManager.SoundType.Win);
                             Debug.Log("Win");
             }
             
@@ -94,6 +96,7 @@ public class PhaseManager : MonoBehaviour
         if (!isInGame) 
         {
             remainingTime = 0;
+            SFXManager.Instance.PlaySound(SFXManager.SoundType.Click);
         }
     }
 
@@ -140,5 +143,6 @@ public class PhaseManager : MonoBehaviour
     public void LoseGame()
     {
         winLoseText.text = "You Lost!!!!!!!";
+        SFXManager.Instance.PlaySound(SFXManager.SoundType.Lose);
     }
 }

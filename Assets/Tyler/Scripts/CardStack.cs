@@ -10,7 +10,7 @@ public class CardStack : Collidable
     // reference to the alpaca card at the top of the stack if there is one
     public Alpaca alpaca;
 
-
+    private bool audioPlayed = false;
 
     private BoxCollider2D col;
     private float cardFollowSpeed = 20f;
@@ -35,6 +35,11 @@ public class CardStack : Collidable
     {
         if (dragging)
         {
+            if (!audioPlayed)
+            {
+                SFXManager.Instance.PlaySound(SFXManager.SoundType.CardDrag);
+                audioPlayed = true;
+            }
             // Move object, taking into account original offset.
             Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
             targetPos.z = transform.position.z;
@@ -84,6 +89,7 @@ public class CardStack : Collidable
 
     public void OnLeftMouseDown()
     {
+        SFXManager.Instance.PlaySound(SFXManager.SoundType.Click);
         if (stackState == StackState.Expanded) return;
 
         // Record the difference between the objects center and the clicked point on the camera plane.
@@ -103,6 +109,8 @@ public class CardStack : Collidable
 
     public void OnLeftMouseUp()
     {
+        SFXManager.Instance.PlaySound(SFXManager.SoundType.CardPlace);
+        audioPlayed = false;
         // Stop dragging
         transform.position -= new Vector3(0, .1f, 0);
         dragging = false;
