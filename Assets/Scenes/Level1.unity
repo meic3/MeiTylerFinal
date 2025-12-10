@@ -677,6 +677,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8768491}
     - target: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
+      propertyPath: startMoney
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
       propertyPath: winLoseText
       value: 
       objectReference: {fileID: 994113422}

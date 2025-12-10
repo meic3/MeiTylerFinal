@@ -34,8 +34,13 @@ public class PhaseManager : MonoBehaviour
     public bool isPaused = false;
     public bool inTutorial = false;
 
+    [SerializeField]
+
+    private float startMoney;
+
     void Awake()
     {
+        PlayerMoney.money = startMoney;
         if(SceneManager.GetActiveScene().name == "Tutorial")
         {
             isPaused = true;
