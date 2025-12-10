@@ -23,6 +23,12 @@ public class ProjectileAttack : MonoBehaviour, IAttack
     // shoot projectiles at bug(s)
     public void Attack(Alpaca alpaca)
     {
+        if (projectilePrefab.name == "Bullet")
+        {SFXManager.Instance.PlaySound(SFXManager.SoundType.BulletGun);}
+        if (projectilePrefab.name == "Spit")
+        {SFXManager.Instance.PlaySound(SFXManager.SoundType.BulletSpit);}
+        if (projectilePrefab.name == "Fireball")
+        {SFXManager.Instance.PlaySound(SFXManager.SoundType.BulletFire);}
         var bugs = new List<GameObject>(alpaca.rangeHelper.bugsInRange);
         int attacks = alpaca.stats.attackCount.IntValue < bugs.Count ? alpaca.stats.attackCount.IntValue : bugs.Count;
         for (int i = 0; i < attacks; i++)

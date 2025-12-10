@@ -34,6 +34,7 @@ public class TitleScreenManager : MonoBehaviour
 
     public void GotoLevel1(int levelNum)
     {
+        SFXManager.Instance.PlaySound(SFXManager.SoundType.Select);
         SceneManager.LoadScene("Level1");
     }
 

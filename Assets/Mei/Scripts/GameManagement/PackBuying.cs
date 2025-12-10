@@ -43,6 +43,7 @@ public class PackBuying : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                SFXManager.Instance.PlaySound(SFXManager.SoundType.BuyPack);
                 if (PlayerMoney.money >= packData.packPrice)
                 {
                     GameObject boughtPack = Instantiate(packData.packObject);
@@ -75,6 +76,7 @@ public class PackBuying : MonoBehaviour
     
     public void PackRelease()
     {
+        SFXManager.Instance.PlaySound(SFXManager.SoundType.CardPlace);
         mouseHold = false;
     }
 }

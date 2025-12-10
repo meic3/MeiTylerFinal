@@ -23,6 +23,7 @@ public class BeamAttack : MonoBehaviour, IAttack
 
     public void Attack(Alpaca alpaca)
     {
+        SFXManager.Instance.PlaySound(SFXManager.SoundType.BulletLaser);
         var bugs = new List<GameObject>(alpaca.rangeHelper.bugsInRange);
         int attacks = alpaca.stats.attackCount.IntValue < bugs.Count ? alpaca.stats.attackCount.IntValue : bugs.Count;
         for (int i = 0; i < attacks; i++)
