@@ -42,37 +42,38 @@ public class BugGenerator : MonoBehaviour
         {
             spawnCount = 0;
             SpawnNextBug();
-            spawnTime = Random.Range(3f, 7f);
+            //spawnTime = Random.Range(3f, 7f);
         }
     }
 
     void SpawnNextBug()
-{
-    if (spawnCurrentNum >= currentWave.bugSpawns.Length)
     {
-        canGenerate = false;
-        return;
-    }
+        if (spawnCurrentNum >= currentWave.bugSpawns.Length)
+        {
+            canGenerate = false;
+            return;
+        }
 
-    BugSpawnData currentEntry = currentWave.bugSpawns[spawnCurrentNum];
-    GameObject bugToSpawn = GetBugPrefab(currentEntry.bugType);
+        BugSpawnData currentEntry = currentWave.bugSpawns[spawnCurrentNum];
+        spawnTime = currentEntry.spawnInterval;
+        GameObject bugToSpawn = GetBugPrefab(currentEntry.bugType);
     
-    if (bugToSpawn != null)
-    {
-        GameObject bug = Instantiate(bugToSpawn, spawnPos, Quaternion.identity);
-        bug.GetComponent<BugMove>().SetRoute(lineRend);
-        bugsSpawnedRN++;
-        bugsSpawned++; 
-        bugsAlive++; 
+        if (bugToSpawn != null)
+        {
+            GameObject bug = Instantiate(bugToSpawn, spawnPos, Quaternion.identity);
+            bug.GetComponent<BugMove>().SetRoute(lineRend);
+            bugsSpawnedRN++;
+            bugsSpawned++; 
+            bugsAlive++; 
 
         
-        if (bugsSpawnedRN >= currentEntry.count)
-        {
-            bugsSpawnedRN = 0;
-            spawnCurrentNum++;
+            if (bugsSpawnedRN >= currentEntry.count)
+            {
+                bugsSpawnedRN = 0;
+                spawnCurrentNum++;
+            }
         }
     }
-}
 
     GameObject GetBugPrefab(BugSpawnData.BugType bugType)
     {

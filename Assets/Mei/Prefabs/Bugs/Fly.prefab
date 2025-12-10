@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57399991ac4d7144aa350b9e5b72a5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 15
+  maxHP: 2
   currentHP: 0
   moneyReward: 0
   Died: 0

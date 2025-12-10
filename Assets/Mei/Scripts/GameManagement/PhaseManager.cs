@@ -70,7 +70,7 @@ public class PhaseManager : MonoBehaviour
         
         if (bugGenerator.IsWaveComplete())
         {
-    
+            PlayerMoney.money += bugGenerator.currentWave.reward;
             currentWaveNum++;
             
             if (currentWaveNum >= waves.Length)

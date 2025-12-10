@@ -271,7 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373ce7d5fd9a744d5b6c52b183fbc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrice: 1
+  name: Default Name
+  description: Default Description
+  cardSellPrice: 4
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &3312080286304569407
