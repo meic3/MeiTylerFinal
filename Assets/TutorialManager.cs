@@ -120,7 +120,6 @@ public class TutorialManager : MonoBehaviour
                     {
                         phaseManager.isPaused = false;
                         bugGenerator.isPaused = false;
-                        currentInteractItem[currentInteractItemIndex].transform.parent.gameObject.transform.position = cardTargets[currentTargetIndex].transform.position;
                     }
                     else
                     {

@@ -532,11 +532,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5444651822113534905, guid: 39284ed23cf5c4713a55952a1c1de9ac, type: 3}
   m_PrefabInstance: {fileID: 1134137454}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &556322282 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3652324605830459781, guid: 39284ed23cf5c4713a55952a1c1de9ac, type: 3}
-  m_PrefabInstance: {fileID: 1134137454}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,11 +679,7 @@ PrefabInstance:
     - target: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
       propertyPath: winLoseText
       value: 
-      objectReference: {fileID: 1293564077}
-    - target: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
-      propertyPath: WinLoseImage
-      value: 
-      objectReference: {fileID: 556322282}
+      objectReference: {fileID: 994113422}
     - target: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
       propertyPath: StartGameButton
       value: 
@@ -912,17 +903,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39284ed23cf5c4713a55952a1c1de9ac, type: 3}
---- !u!114 &1293564077 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4175480486949410624, guid: 39284ed23cf5c4713a55952a1c1de9ac, type: 3}
-  m_PrefabInstance: {fileID: 1134137454}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1855798005 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
