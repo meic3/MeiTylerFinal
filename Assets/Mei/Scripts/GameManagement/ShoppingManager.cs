@@ -17,7 +17,7 @@ public class ShoppingManager : MonoBehaviour
         {
             GameObject newPack = Instantiate(widgetPrefab);
             PurchaseWidget packScript = newPack.GetComponent<PurchaseWidget>();
-            packScript.Init(allPacksInfo[i].spr, allPacksInfo[i].price, allPacksInfo[i].prefab);
+            packScript.Init(allPacksInfo[i].prefab.GetComponent<SpriteRenderer>().sprite, allPacksInfo[i].price, allPacksInfo[i].prefab);
             allWidgets.Add(packScript);
         }
         for(int i = 0;i<allWidgets.Count;i++)

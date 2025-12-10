@@ -16,7 +16,8 @@ public class ProjectileAttack : MonoBehaviour, IAttack
             typeof(PierceModifier),
             typeof(RangeModifier),
             typeof(SlowModifier),
-            typeof(SpeedModifier)
+            typeof(SpeedModifier),
+            typeof(AttackCountModifier)
         };
 
     // shoot projectiles at bug(s)

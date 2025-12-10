@@ -44,7 +44,7 @@ public class SellCard : MonoBehaviour
         float ret = 0f;
         for (int i=0; i<cs.Cards.Count; i++)
             {
-                ret += cs.Cards[i].cardPrice;
+                ret += cs.Cards[i].cardSellPrice;
             }
         return ret;
     }

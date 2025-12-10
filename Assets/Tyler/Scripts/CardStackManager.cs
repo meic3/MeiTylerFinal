@@ -53,8 +53,11 @@ public class CardStackManager : MonoBehaviour
         }
         return null;
     }
+
+
     void Update()
     {
+        // hovering card
         Card hoveringCard = GetHoveringCard();
         if (hoveringCard != null && hoveringCardNameText != null && hoveringCardDescriptionText != null)
         {

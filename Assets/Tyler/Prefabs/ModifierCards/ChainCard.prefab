@@ -512,7 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Default Name
   description: Default Description
-  cardPrice: 1
+  cardSellPrice: 4
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &3312080286304569407
