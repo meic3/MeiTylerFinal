@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5605221901744268440}
   - component: {fileID: 6038339080228081652}
   - component: {fileID: 215090739545272803}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Pack_Test 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ea5517459196e41839c0091bc351a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
+  description: 
+  cardNum: 5
   listedCards:
   - {fileID: 7468783304547847155, guid: b01d5945e6fde4a49b73e258d06fa5ea, type: 3}
   - {fileID: 5644962750459231878, guid: a19506f1b3b95489a83d8d1a6ba222c8, type: 3}

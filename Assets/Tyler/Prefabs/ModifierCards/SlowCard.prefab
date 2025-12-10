@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Jar (Mud)
+  m_text: Jar of Mud
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b32a96d1258ea9245a0f18391efc10ef, type: 2}
   m_sharedMaterial: {fileID: -5493026619135750105, guid: b32a96d1258ea9245a0f18391efc10ef, type: 2}
@@ -374,8 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373ce7d5fd9a744d5b6c52b183fbc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default Name
-  description: Default Description
+  name: Jar of Mud
+  description: Bugs hit by this alpaca are slowed by 50%. Slows does not stack.
   cardSellPrice: 4
   canDrag: 0
   CurrentStack: {fileID: 0}
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea145b106cfc184ead997f29a961dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slow: 0.3
+  slow: 0.5
 --- !u!1 &5889502376542400098
 GameObject:
   m_ObjectHideFlags: 0

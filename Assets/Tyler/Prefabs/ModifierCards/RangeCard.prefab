@@ -373,8 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373ce7d5fd9a744d5b6c52b183fbc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default Name
-  description: Default Description
+  name: Camera Lens
+  description: Increase range by 1.
   cardSellPrice: 4
   canDrag: 0
   CurrentStack: {fileID: 0}
@@ -436,4 +436,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14e6d80687d44be6a1c73cce148aff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  value: 0.5

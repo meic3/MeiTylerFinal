@@ -374,7 +374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Default Name
-  description: Default Description
+  description: Repeat attack at 1 additional nearby bug.
   cardSellPrice: 4
   canDrag: 0
   CurrentStack: {fileID: 0}

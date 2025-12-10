@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class CardPack : MonoBehaviour
 {
+    public string name;
+    public string description;
+
     public int cardNum = 5;
     private int cardCount = 0;
     public List<GameObject> listedCards;

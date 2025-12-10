@@ -57,20 +57,6 @@ public class CardStackManager : MonoBehaviour
 
     void Update()
     {
-        // hovering card
-        Card hoveringCard = GetHoveringCard();
-        if (hoveringCard != null && hoveringCardNameText != null && hoveringCardDescriptionText != null)
-        {
-            hoveringCardNameText.text = hoveringCard.name;
-            hoveringCardDescriptionText.text = hoveringCard.description;
-        }
-        else
-        {
-            hoveringCardNameText.text = "";
-            hoveringCardDescriptionText.text = "";
-        }
-
-
         if (Input.GetMouseButtonDown(0))
         {
             CardStack cardStack = TryHitCardStack();
@@ -127,8 +113,6 @@ public class CardStackManager : MonoBehaviour
         if (cs == null) return;
         stackBeingDragged = cs;
         ShowCardStacksOutlines(true);
-        ShopUI.SetActive(false);
-        SellUI.SetActive(true);
         SellUI.GetComponent<SellCard>().ShowPrice(stackBeingDragged);
     }
 
@@ -137,8 +121,6 @@ public class CardStackManager : MonoBehaviour
         stackBeingDragged = null;
         ShowCardStacksOutlines(false);
         SellUI.GetComponent<SellCard>().SellCardStack();
-        ShopUI.SetActive(true);
-        SellUI.SetActive(false);
     }
     
 
