@@ -23,7 +23,7 @@ public class PhaseManager : MonoBehaviour
     private int currentWaveNum = 0;
 
     [SerializeField]
-    private GameObject timerUI;
+    //private GameObject timerUI;
 
     public bool isPaused = false;
     public bool inTutorial = false;
@@ -70,7 +70,7 @@ public class PhaseManager : MonoBehaviour
         
         if (bugGenerator.IsWaveComplete())
         {
-    
+            PlayerMoney.money += bugGenerator.currentWave.reward;
             currentWaveNum++;
             
             if (currentWaveNum >= waves.Length)
@@ -90,7 +90,7 @@ public class PhaseManager : MonoBehaviour
     {
         if (!isInGame) 
         {
-            remainingTime = 0; 
+            remainingTime = 0;
         }
     }
 
@@ -98,6 +98,7 @@ public class PhaseManager : MonoBehaviour
     {
         if (remainingTime <= 0)
         {
+            timerText.text = "00:00";
             remainingTime = setTime;
             isInGame = true;
             

@@ -1,21 +1,36 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using TMPro;
 
 public class Bug : MonoBehaviour
 {
     BugMove bugMove;
     [HideInInspector] public BugLife bugLife;
 
+    [SerializeField] bool debug = false;
+    [SerializeField] GameObject healthDebug;
+    private TextMeshProUGUI healthDebugText;
+
     private void Start()
     {
         bugMove = GetComponent<BugMove>();
         bugLife = GetComponent<BugLife>();
+
+        if (debug && healthDebug != null)
+        {
+            GameObject healthDebugInstance = Instantiate(healthDebug, transform);
+            healthDebugText = healthDebugInstance.GetComponentInChildren<TextMeshProUGUI>();
+        }
     }
 
     private void Update()
     {
         UpdateSlowInstances();
+        if (debug && healthDebugText != null)
+        {
+            healthDebugText.text = bugLife.currentHP.ToString();
+        }
     }
 
     #region slow

@@ -208,8 +208,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -1.2399902, y: -111}
-  m_SizeDelta: {x: 243.53, y: 208.73999}
+  m_AnchoredPosition: {x: 1.96, y: -58.72}
+  m_SizeDelta: {x: 249.93, y: 272.333}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6429446011926050255
 CanvasRenderer:
@@ -266,8 +266,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
         m_TargetAssemblyTypeName: PhaseManager, Assembly-CSharp
         m_MethodName: SkipPrepTime
         m_Mode: 1
@@ -504,7 +504,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_TargetDisplay: 0
 --- !u!114 &5710484564433762921
 MonoBehaviour:
@@ -1392,7 +1392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1.960022, y: -27.99997}
+  m_AnchoredPosition: {x: 1.96, y: -10}
   m_SizeDelta: {x: 249.93, y: 48.72}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8758130563915547885
@@ -1679,24 +1679,10 @@ MonoBehaviour:
   widgetPrefab: {fileID: 2576334441658831599, guid: 92e532f4909fdc04f84cacf1dc7420ff, type: 3}
   allWidgets: []
   allPacksInfo:
-  - spr: {fileID: 5423305453593347490, guid: ee17f1b7b55f7494abd95d4d4d39e31c, type: 3}
-    price: 25
-    prefab: {fileID: 3197773748099215640, guid: 0c4c46626ee764c68bf20d90ed134f12, type: 3}
-  - spr: {fileID: 5423305453593347490, guid: ee17f1b7b55f7494abd95d4d4d39e31c, type: 3}
-    price: 25
-    prefab: {fileID: 3197773748099215640, guid: 0c4c46626ee764c68bf20d90ed134f12, type: 3}
-  - spr: {fileID: 5423305453593347490, guid: ee17f1b7b55f7494abd95d4d4d39e31c, type: 3}
-    price: 25
-    prefab: {fileID: 3197773748099215640, guid: 0c4c46626ee764c68bf20d90ed134f12, type: 3}
-  - spr: {fileID: 5423305453593347490, guid: ee17f1b7b55f7494abd95d4d4d39e31c, type: 3}
-    price: 25
-    prefab: {fileID: 3197773748099215640, guid: 0c4c46626ee764c68bf20d90ed134f12, type: 3}
-  - spr: {fileID: 5423305453593347490, guid: ee17f1b7b55f7494abd95d4d4d39e31c, type: 3}
-    price: 25
-    prefab: {fileID: 3197773748099215640, guid: 0c4c46626ee764c68bf20d90ed134f12, type: 3}
-  - spr: {fileID: 5423305453593347490, guid: ee17f1b7b55f7494abd95d4d4d39e31c, type: 3}
-    price: 25
-    prefab: {fileID: 3197773748099215640, guid: 0c4c46626ee764c68bf20d90ed134f12, type: 3}
+  - price: 5
+    prefab: {fileID: 3197773748099215640, guid: a206fb8d29294479ba9a0bf29df270ca, type: 3}
+  - price: 5
+    prefab: {fileID: 3197773748099215640, guid: 203b36217d396480ca62e1d769735847, type: 3}
 --- !u!114 &6642568298253834226
 MonoBehaviour:
   m_ObjectHideFlags: 0

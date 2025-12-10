@@ -16,7 +16,8 @@ public class BeamAttack : MonoBehaviour, IAttack
             typeof(DamageModifier),
             typeof(RangeModifier),
             typeof(SlowModifier),
-            typeof(SpeedModifier)
+            typeof(SpeedModifier),
+            typeof(AttackCountModifier)
         };
 
 
