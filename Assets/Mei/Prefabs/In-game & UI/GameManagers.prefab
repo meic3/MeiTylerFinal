@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canGenerate: 0
-  spawnTime: 3
+  spawnTime: 1
   setFly: {fileID: 2381171907590807938, guid: daa9e6400baa3b94eac94a09a32aff95, type: 3}
   setGnat: {fileID: 2381171907590807938, guid: 73b993ce52c475040853c34b950a1e4a, type: 3}
   setStinkbug: {fileID: 2381171907590807938, guid: 8f7d086780d66214fb9c1ee4f40182d5, type: 3}
@@ -73,24 +73,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - bugSpawns:
+    - bugType: 1
+      count: 3
+      spawnInterval: 3
+    reward: 15
+  - bugSpawns:
+    - bugType: 4
+      count: 3
+      spawnInterval: 1
+    - bugType: 1
+      count: 7
+      spawnInterval: 1
+    reward: 10
+  - bugSpawns:
+    - bugType: 0
+      count: 1
+      spawnInterval: 1
+    - bugType: 2
+      count: 3
+      spawnInterval: 5
     - bugType: 4
       count: 5
-      spawnInterval: 0
-    reward: 0
+      spawnInterval: 0.5
+    reward: 15
   - bugSpawns:
+    - bugType: 3
+      count: 1
+      spawnInterval: 5
+    - bugType: 4
+      count: 5
+      spawnInterval: 0.5
+    - bugType: 2
+      count: 2
+      spawnInterval: 5
+    - bugType: 0
+      count: 13
+      spawnInterval: 1
+    - bugType: 2
+      count: 7
+      spawnInterval: 2
+    reward: 10
+  - bugSpawns:
+    - bugType: 0
+      count: 30
+      spawnInterval: 0.5
+    - bugType: 2
+      count: 5
+      spawnInterval: 1
+    - bugType: 0
+      count: 15
+      spawnInterval: 0.5
+    - bugType: 1
+      count: 20
+      spawnInterval: 0.5
+    reward: 15
+  - bugSpawns:
+    - bugType: 3
+      count: 1
+      spawnInterval: 1
     - bugType: 4
       count: 10
-      spawnInterval: 0
-    reward: 0
+      spawnInterval: 1
+    - bugType: 3
+      count: 1
+      spawnInterval: 1
+    - bugType: 0
+      count: 30
+      spawnInterval: 0.7
+    reward: 20
   - bugSpawns:
+    - bugType: 3
+      count: 4
+      spawnInterval: 2
+    - bugType: 1
+      count: 10
+      spawnInterval: 0.5
+    - bugType: 4
+      count: 20
+      spawnInterval: 0.8
+    - bugType: 3
+      count: 2
+      spawnInterval: 1
     - bugType: 4
       count: 15
-      spawnInterval: 0
-    reward: 0
+      spawnInterval: 0.8
+    reward: 10
+  - bugSpawns:
+    - bugType: 3
+      count: 20
+      spawnInterval: 2
+    reward: 10
   isInGame: 0
   bugGenerator: {fileID: 4334946513125419720}
   timerText: {fileID: 0}
   phaseText: {fileID: 0}
+  StartGameButton: {fileID: 0}
   winLoseText: {fileID: 0}
   WinLoseImage: {fileID: 0}
   isPaused: 0

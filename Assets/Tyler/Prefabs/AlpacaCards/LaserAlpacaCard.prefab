@@ -488,7 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Laser Alpaca
   description: Shoots lasers
-  cardSellPrice: 4
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!114 &6073366103060507941
@@ -507,7 +507,7 @@ MonoBehaviour:
     damage:
       value: 2
     range:
-      value: 5
+      value: 3
     speed:
       value: 0.7
     AOE:

@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bugLife: {fileID: 0}
-  debug: 1
+  debug: 0
   healthDebug: {fileID: 3689357538179915813, guid: a3fac890e31ec4a37a24449c86dbcf09, type: 3}
   isSlowed: 0
 --- !u!114 &740740348770314946

@@ -103,6 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ea5517459196e41839c0091bc351a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Tools and Technology
+  description: 
+  cardNum: 2
   listedCards:
   - {fileID: 7468783304547847155, guid: b01d5945e6fde4a49b73e258d06fa5ea, type: 3}
   - {fileID: 8357959933983192309, guid: 2605abc7fe635634b878825c44647b86, type: 3}

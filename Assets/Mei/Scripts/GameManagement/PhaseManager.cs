@@ -14,7 +14,9 @@ public class PhaseManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timerText;
     [SerializeField]
-    private TextMeshProUGUI phaseText; 
+    private TextMeshProUGUI phaseText;
+    [SerializeField]
+    private GameObject StartGameButton;
 
     [SerializeField]
     private TextMeshProUGUI winLoseText; 
@@ -90,6 +92,7 @@ public class PhaseManager : MonoBehaviour
             isInGame = false;
             remainingTime = setTime;
             UpdatePhaseText();
+            StartGameButton.SetActive(true);
         }
     }
 
@@ -108,6 +111,7 @@ public class PhaseManager : MonoBehaviour
             timerText.text = "00:00";
             remainingTime = setTime;
             isInGame = true;
+            StartGameButton.SetActive(false);
             
             if (currentWaveNum < waves.Length)
             {
@@ -131,7 +135,7 @@ public class PhaseManager : MonoBehaviour
         {
             if (isInGame)
             {
-                phaseText.text = "Wave " + (currentWaveNum + 1);
+                phaseText.text = "Wave " + (currentWaveNum + 1) + "/" + waves.Length;
             }
             else
             {

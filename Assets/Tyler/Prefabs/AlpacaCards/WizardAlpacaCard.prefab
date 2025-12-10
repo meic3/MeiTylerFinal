@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Wizard Alpaca
   description: Shoots fireballs
-  cardSellPrice: 4
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!114 &226261270358471940
@@ -307,9 +307,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     damage:
-      value: 0.2
+      value: 0.3
     range:
-      value: 3
+      value: 2
     speed:
       value: 3
     AOE:
@@ -324,7 +324,7 @@ MonoBehaviour:
       value: 0
     pierce:
       value: 0
-    homingProjectile: 1
+    homingProjectile: 0
   rangeHelper: {fileID: 0}
   rangeIndicator: {fileID: 0}
 --- !u!114 &4759496615308145946
