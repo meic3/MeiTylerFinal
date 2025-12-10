@@ -29,7 +29,7 @@ public class Bug : MonoBehaviour
         UpdateSlowInstances();
         if (debug && healthDebugText != null)
         {
-            healthDebugText.text = bugLife.currentHP.ToString();
+            healthDebugText.text = bugLife.currentHP.ToString("F2");
         }
     }
 

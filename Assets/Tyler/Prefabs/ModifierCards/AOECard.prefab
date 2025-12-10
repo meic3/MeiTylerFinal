@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373ce7d5fd9a744d5b6c52b183fbc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: AOE
+  name: Blast Ring
   description: increase AOE
   cardSellPrice: 4
   canDrag: 0

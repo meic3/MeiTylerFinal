@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
     public float projectileSpeed = 20f;
     float lifeTime = 5f;
     Rigidbody2D rb;
-
+    public bool rotateTowardsVelocity = true;
 
     // set constant velocity towards direction, rotate towards direction
 
@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
 
         rb.linearVelocity = dir * projectileSpeed;
 
-        transform.up = dir;
+        if (rotateTowardsVelocity) transform.up = dir;
     }
 
 

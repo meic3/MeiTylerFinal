@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bugLife: {fileID: 0}
-  debug: 1
+  debug: 0
   healthDebug: {fileID: 3689357538179915813, guid: a3fac890e31ec4a37a24449c86dbcf09, type: 3}
   isSlowed: 0
 --- !u!114 &740740348770314946
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c9cb9fc90332d4abd0c3bb2189b364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 0.8
 --- !u!114 &1578035680775103800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57399991ac4d7144aa350b9e5b72a5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 2
+  maxHP: 10
   currentHP: 0
   moneyReward: 0
   Died: 0

@@ -49,7 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpaca: {fileID: 0}
-  projectileSpeed: 5
+  projectileSpeed: 4
+  rotateTowardsVelocity: 0
   AOEDamageMultiplier: 0.5
   AOEEffectPrefab: {fileID: 8698767059191682277, guid: 19ce93c57d63d42a6995fc1ab4dcf048, type: 3}
 --- !u!61 &1764828076319336772

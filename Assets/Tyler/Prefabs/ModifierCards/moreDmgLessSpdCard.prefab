@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373ce7d5fd9a744d5b6c52b183fbc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default Name
-  description: Default Description
+  name: Toy Hammer
+  description: Increase damage by 150%. Decrease attack speed by 30%.
   cardSellPrice: 4
   canDrag: 0
   CurrentStack: {fileID: 0}
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9c36ec2a9144d15931a07f6b5e9bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 0.5
+  multiplier: 0.7
 --- !u!114 &-3731049875091491935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bf98bca084541279fedb26381f4c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 3
+  multiplier: 2.5
 --- !u!1 &5889502376542400098
 GameObject:
   m_ObjectHideFlags: 0

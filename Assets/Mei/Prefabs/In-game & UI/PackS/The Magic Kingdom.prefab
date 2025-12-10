@@ -103,6 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ea5517459196e41839c0091bc351a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: The Magic Kingdom
+  description: 
+  cardNum: 2
   listedCards:
   - {fileID: 4481446064055160974, guid: 89a5c7a842c42d64f8a1ba4ec8577fc7, type: 3}
   - {fileID: 8357959933983192309, guid: 6435baab3352a4c6bb6a0e5c5a7976bc, type: 3}

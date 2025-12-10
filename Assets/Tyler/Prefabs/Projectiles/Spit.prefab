@@ -31,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,10 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpaca: {fileID: 0}
-  projectileSpeed: 5
-  AOERadius: 1.5
+  projectileSpeed: 4
+  rotateTowardsVelocity: 0
   AOEDamageMultiplier: 0.5
-  AOEEffectPrefab: {fileID: 8698767059191682277, guid: 19ce93c57d63d42a6995fc1ab4dcf048, type: 3}
+  AOEEffectPrefab: {fileID: 8698767059191682277, guid: 27dbe2b5bcc56554492099c2b64c8a00, type: 3}
 --- !u!61 &1764828076319336772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48666668, y: 0.904}
+    oldSize: {x: 0.365, y: 0.678}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -60,7 +60,7 @@ public class CardStack : Collidable
                     extraLocalOffsets[i] = Vector3.Lerp(extraLocalOffsets[i], Vector3.zero, Time.deltaTime * cardFollowSpeed);
 
                     // base collapsed local position
-                    Vector3 baseLocal = new Vector3(0, i * 0.05f, 0);
+                    Vector3 baseLocal = new Vector3(0, i * collapsedOffset, 0);
                     Cards[i].transform.localPosition = baseLocal + extraLocalOffsets[i];
                 }
             }
@@ -144,20 +144,23 @@ public class CardStack : Collidable
             CollapseStack();
     }
 
+
+    float expandedOffset = -.27f;
+    float collapsedOffset = .05f;
+
     public void ExpandStack()
     {
         stackState = StackState.Expanded;
 
         //collider.enabled = false;
 
-        float spread = 0.7f;
 
         // ensure offsets list matches cards
         while (extraLocalOffsets.Count < Cards.Count) extraLocalOffsets.Add(Vector3.zero);
         for (int i = 0; i < Cards.Count; i++)
         {
             extraLocalOffsets[i] = Vector3.zero;
-            Cards[i].transform.localPosition = new Vector3(0, -i * spread, 0);
+            Cards[i].transform.localPosition = new Vector3(0, i * expandedOffset, 0);
             Cards[i].EnableInteraction(true);
         }
     }
@@ -173,7 +176,7 @@ public class CardStack : Collidable
         for (int i = 0; i < Cards.Count; i++)
         {
             extraLocalOffsets[i] = Vector3.zero;
-            Cards[i].transform.localPosition = new Vector3(0, i * 0.05f, 0);
+            Cards[i].transform.localPosition = new Vector3(0, i * collapsedOffset, 0);
             Cards[i].EnableInteraction(false);
         }
     }
