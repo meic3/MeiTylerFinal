@@ -18,6 +18,9 @@ public class PhaseManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI winLoseText; 
+
+    [SerializeField]
+    private GameObject WinLoseImage ; 
     private float remainingTime;
     private float setTime = 30;
     private int currentWaveNum = 0;
@@ -30,6 +33,7 @@ public class PhaseManager : MonoBehaviour
 
     void Awake()
     {
+        PlayerMoney.money = 0;
         if(SceneManager.GetActiveScene().name == "Tutorial")
         {
             isPaused = true;
@@ -44,6 +48,7 @@ public class PhaseManager : MonoBehaviour
 
     void Start()
     {
+        WinLoseImage.SetActive(false);
         winLoseText.text = "";
         remainingTime = setTime;
         bugGenerator.canGenerate = false;
@@ -75,7 +80,9 @@ public class PhaseManager : MonoBehaviour
             
             if (currentWaveNum >= waves.Length)
             {
-                // beateeeeed theeeeee levellllllll
+                WinLoseImage.SetActive(true);
+                bugGenerator.isPaused = true;
+                isPaused = true;
                 winLoseText.text = "You Win!!!!";
                             Debug.Log("Win");
             }
@@ -135,6 +142,10 @@ public class PhaseManager : MonoBehaviour
 
     public void LoseGame()
     {
+        WinLoseImage.SetActive(true);
+        bugGenerator.isPaused = true;
+        isPaused = true;
         winLoseText.text = "You Lost!!!!!!!";
     }
+
 }
