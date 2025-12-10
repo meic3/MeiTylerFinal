@@ -472,8 +472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Spit Alpaca
-  description: '*ptuh'
-  cardSellPrice: 4
+  description: ptuh
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!114 &3561426632208123548
@@ -492,7 +492,7 @@ MonoBehaviour:
     damage:
       value: 1
     range:
-      value: 3
+      value: 2
     speed:
       value: 1
     AOE:

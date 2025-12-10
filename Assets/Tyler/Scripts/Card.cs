@@ -10,11 +10,13 @@ public class Card : MonoBehaviour
 
     SpriteRenderer sr;
     BoxCollider2D col;
+    Canvas spriteTextCanvas;
 
     void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
+        spriteTextCanvas = GetComponentInChildren<Canvas>();
         //col.enabled = false;
 
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
@@ -28,6 +30,7 @@ public class Card : MonoBehaviour
     public void SetSortingOrder(int i)
     {
         sr.sortingOrder = i;
+        spriteTextCanvas.sortingOrder = i;
     }
 
 

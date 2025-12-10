@@ -1085,8 +1085,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 42.2}
-  m_SizeDelta: {x: 0, y: 464.4}
+  m_AnchoredPosition: {x: 0, y: 83.68}
+  m_SizeDelta: {x: 0, y: 381.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3206025488545269069
 CanvasRenderer:
@@ -1170,7 +1170,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 280, y: 440}
+  m_Size: {x: 280, y: 352.5}
   m_EdgeRadius: 0
 --- !u!114 &3956529738934392884
 MonoBehaviour:
@@ -1222,7 +1222,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -18, y: -33.234734}
+  m_AnchoredPosition: {x: -18, y: -21}
   m_SizeDelta: {x: 15.92, y: 342.3803}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4374434113919265787
@@ -1624,8 +1624,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 117.00963}
-  m_SizeDelta: {x: 0, y: 314.7808}
+  m_AnchoredPosition: {x: 0, y: 100.91}
+  m_SizeDelta: {x: 0, y: 347}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2500458023354321351
 CanvasRenderer:
@@ -1745,7 +1745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6354781906903660165
@@ -1771,17 +1771,17 @@ MonoBehaviour:
   widgetPrefab: {fileID: 2576334441658831599, guid: 92e532f4909fdc04f84cacf1dc7420ff, type: 3}
   allWidgets: []
   allPacksInfo:
-  - price: 5
-    prefab: {fileID: 3197773748099215640, guid: a206fb8d29294479ba9a0bf29df270ca, type: 3}
   - price: 7
+    prefab: {fileID: 3197773748099215640, guid: a206fb8d29294479ba9a0bf29df270ca, type: 3}
+  - price: 5
     prefab: {fileID: 3197773748099215640, guid: 203b36217d396480ca62e1d769735847, type: 3}
-  - price: 15
+  - price: 12
     prefab: {fileID: 3197773748099215640, guid: 9d4592327755c5c42bfe4e92d2de5c35, type: 3}
-  - price: 15
+  - price: 12
     prefab: {fileID: 3197773748099215640, guid: e6fd3a8081b5c7244ade590293ce12d1, type: 3}
-  - price: 15
+  - price: 12
     prefab: {fileID: 3197773748099215640, guid: ed21c3523e6d4a648b84dd8b7a28a876, type: 3}
-  - price: 15
+  - price: 12
     prefab: {fileID: 3197773748099215640, guid: cb0012927d1328b4c92f1f2840b9379c, type: 3}
 --- !u!114 &6642568298253834226
 MonoBehaviour:
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 100, y: 140}
-  m_Spacing: {x: 27.7, y: 74.5}
+  m_Spacing: {x: 27.7, y: 50}
   m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!114 &1429097544476269765

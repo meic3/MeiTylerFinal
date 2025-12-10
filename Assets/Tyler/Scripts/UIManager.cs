@@ -56,6 +56,14 @@ public class UIManager : MonoBehaviour
         Card card = CardStackManager.Instance.GetHoveringCard();
         if (card != null)
         {
+            Alpaca alpaca = card.GetComponent<Alpaca>();
+            if (alpaca != null)
+            {
+                infoNameText.text = card.name;
+                infoDescriptionText.text = card.description + "\n" + alpaca.stats.ToString();
+                return;
+            }
+
             infoNameText.text = card.name;
             infoDescriptionText.text = card.description;
             return;

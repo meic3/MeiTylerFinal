@@ -9,7 +9,7 @@ public class BugSpawnData
     
     public BugType bugType;
     public int count;
-    public int spawnInterval; // delay before the next bug is spawned
+    public float spawnInterval; // delay before the next bug is spawned
 }
 
 [Serializable]

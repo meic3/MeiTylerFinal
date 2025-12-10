@@ -135,9 +135,24 @@ public class CardStackManager : MonoBehaviour
     public Card TryHitCard()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, cardLayer);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos, Vector2.zero, Mathf.Infinity, cardLayer);
 
-        return hit.collider != null ? hit.collider.GetComponent<Card>() : null;
+        Card topCard = null;
+        SpriteRenderer topSR = null;
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            SpriteRenderer sr = hit.collider.gameObject.transform.Find("CardSprite").GetComponent<SpriteRenderer>();
+            if (sr == null) continue;
+
+            if (topSR == null || sr.sortingOrder > topSR.sortingOrder)
+            {
+                topSR = sr;
+                topCard = hit.collider.GetComponent<Card>();
+            }
+        }
+
+        return topCard;
     }
 
     private void ShowCardStacksOutlines(bool b)

@@ -16,6 +16,11 @@ public class AlpacaStats
     public Stat pierce = new Stat(0);
     public bool homingProjectile = false;
 
+    public string ToString()
+    {
+        return "damage: " + damage.value + "\nattack speed: " + speed.value;
+    }
+
     // updates the actual stat value for each stat. called whenever stack is updated
     public void Recalculate()
     {
