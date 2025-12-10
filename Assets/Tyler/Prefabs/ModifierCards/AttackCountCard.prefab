@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2111066847076743272, guid: 58f29b428f95e154abec0a918e830783, type: 3}
+  m_Sprite: {fileID: -6614978236556882922, guid: 6e272ba462a423e43bc9af716fb7be91, type: 3}
   m_Color: {r: 0.690566, g: 0.690566, b: 0.690566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +1 Attack count
+  m_text: Double Barrel Straw
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b32a96d1258ea9245a0f18391efc10ef, type: 2}
   m_sharedMaterial: {fileID: -5493026619135750105, guid: b32a96d1258ea9245a0f18391efc10ef, type: 2}
@@ -180,8 +180,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.13
-  m_fontSizeBase: 0.13
+  m_fontSize: 0.095
+  m_fontSizeBase: 0.095
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373ce7d5fd9a744d5b6c52b183fbc88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Default Name
+  name: Double Barrel Straw
   description: Repeat attack at 1 additional nearby bug.
   cardSellPrice: 4
   canDrag: 0

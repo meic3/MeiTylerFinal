@@ -37,7 +37,11 @@ public class UIManager : MonoBehaviour
         if (purchaseWidget != null)
         {
             infoNameText.text = purchaseWidget.packObject.GetComponent<CardPack>().name;
-            infoDescriptionText.text = purchaseWidget.packObject.GetComponent<CardPack>().description;
+            infoDescriptionText.text = CardPack.BuildDescription(
+                purchaseWidget.packObject.GetComponent<CardPack>().description,
+                purchaseWidget.packObject.GetComponent<CardPack>().cardNum,
+                purchaseWidget.packObject.GetComponent<CardPack>().listedCards);
+
             return;
         }
 

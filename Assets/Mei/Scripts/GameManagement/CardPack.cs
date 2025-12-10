@@ -16,7 +16,19 @@ public class CardPack : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        description = BuildDescription(description, cardNum, listedCards);
+    }
+    public static string BuildDescription(string description, int cardNum, List<GameObject> listedCards)
+    {
+        string ret = description;
+        if (ret != "") ret += "\n\n";
+        ret += "number of cards: " + cardNum + "\n\nPossible cards:";
+        foreach (GameObject gameObject in listedCards)
+        {
+            Card card = gameObject.GetComponent<Card>();
+            ret += "\n" + card.name;
+        }
+        return ret;
     }
 
     // Update is called once per frame

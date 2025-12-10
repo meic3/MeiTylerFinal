@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Alpaca Card Pack
-  description: All alpacas
+  description: Contains all alpaca cards
   cardNum: 1
   listedCards:
   - {fileID: 7468783304547847155, guid: b01d5945e6fde4a49b73e258d06fa5ea, type: 3}
