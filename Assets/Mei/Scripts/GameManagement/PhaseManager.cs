@@ -20,6 +20,10 @@ public class PhaseManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI winLoseText; 
+
+    [SerializeField]
+
+    private GameObject winLoseImage;
     private float remainingTime;
     private float setTime = 30;
     private int currentWaveNum = 0;
@@ -42,6 +46,7 @@ public class PhaseManager : MonoBehaviour
         else
         {
         }
+        winLoseImage.SetActive(false);
     } 
 
     void Start()
@@ -79,8 +84,11 @@ public class PhaseManager : MonoBehaviour
             if (currentWaveNum >= waves.Length)
             {
                 // beateeeeed theeeeee levellllllll
+                isPaused = true;
+                bugGenerator.isPaused = true;
                 winLoseText.text = "You Win!!!!";
                 SFXManager.Instance.PlaySound(SFXManager.SoundType.Win);
+                 winLoseImage.SetActive(true);
                             Debug.Log("Win");
             }
             
@@ -142,6 +150,9 @@ public class PhaseManager : MonoBehaviour
 
     public void LoseGame()
     {
+        isPaused = true;
+        bugGenerator.isPaused = true;
+         winLoseImage.SetActive(true);
         winLoseText.text = "You Lost!!!!!!!";
         SFXManager.Instance.PlaySound(SFXManager.SoundType.Lose);
     }
