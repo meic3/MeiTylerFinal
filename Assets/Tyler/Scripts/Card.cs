@@ -55,6 +55,7 @@ public class Card : MonoBehaviour
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
 
+
             // if dragged far enough away from its current stack
             if (Vector3.Distance(initialPos, transform.position) > leaveStackDistanceThreshold)
             {

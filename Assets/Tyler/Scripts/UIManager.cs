@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        // show sell ui while dragging a card stack
         if (CardStackManager.Instance.stackBeingDragged != null)
         {
             shopUI.SetActive(false);
@@ -33,6 +34,7 @@ public class UIManager : MonoBehaviour
             sellUI.SetActive(false);
         }
 
+        // show shop info if hovering
         PurchaseWidget purchaseWidget = TryHitPurchaseWidget();
         if (purchaseWidget != null)
         {
@@ -45,6 +47,7 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        // show card pack info if hovering
         CardPack cardPack = TryHitCardPack();
         if (cardPack != null)
         {
@@ -53,6 +56,7 @@ public class UIManager : MonoBehaviour
             return;
         }
         
+        // show card info if hovering
         Card card = CardStackManager.Instance.GetHoveringCard();
         if (card != null)
         {
