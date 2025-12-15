@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Jar of Mud
-  description: Bugs hit by this alpaca are slowed by 50%. Slows does not stack.
+  description: Attacks slow bugs. Attacks have +20% slow effect. Slows does not stack.
   cardSellPrice: 4
   canDrag: 0
   CurrentStack: {fileID: 0}
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea145b106cfc184ead997f29a961dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slow: 0.5
+  slow: 0.2
 --- !u!1 &5889502376542400098
 GameObject:
   m_ObjectHideFlags: 0
