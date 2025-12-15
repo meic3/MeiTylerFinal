@@ -19,6 +19,7 @@ public class CardStack : Collidable
     private List<Vector3> extraLocalOffsets = new List<Vector3>();
     private Vector3 prevPosition;
     private float perCardLagMultiplier = 0.4f;
+    private float maxLag = 2f;
 
 
 
@@ -60,8 +61,9 @@ public class CardStack : Collidable
                 for (int i = 0; i < Cards.Count; i++)
                 {
                     // when the stack moves by delta, push an opposite offset onto each card so it stays behind
-                    float multiplier = 1f + (Cards.Count-1-i) * perCardLagMultiplier;
-                    extraLocalOffsets[i] -= delta * multiplier;
+                    float depth01 = (float)(Cards.Count - 1 - i) / Mathf.Max(1, Cards.Count - 1);
+                    float lagStrength = Mathf.Lerp(0f, maxLag, depth01);
+                    extraLocalOffsets[i] -= delta * lagStrength;
 
                     // decay the extra offset back to zero over time
                     extraLocalOffsets[i] = Vector3.Lerp(extraLocalOffsets[i], Vector3.zero, Time.deltaTime * cardFollowSpeed);
@@ -253,6 +255,7 @@ public class CardStack : Collidable
         else if (stackState == StackState.Expanded) ExpandStack();
 
         UpdateCardCountDebug();
+        overlappingCollidables.Clear();
     }
 
     public void RemoveCard(Card card)
@@ -272,6 +275,7 @@ public class CardStack : Collidable
         if (Cards.Count>1) ExpandStack();
 
         UpdateCardCountDebug();
+        overlappingCollidables.Clear();
     }
 
 
@@ -302,7 +306,7 @@ public class CardStack : Collidable
         if (CardStackManager.Instance.stackBeingDragged == this) return;
 
         // move away from all colliding objects
-        for (int i = 0; i < overlappingCollidables.Count; i++)
+        for (int i = overlappingCollidables.Count - 1; i >= 0; i--)
         {
             if (overlappingCollidables[i] == null)
             {
@@ -332,7 +336,7 @@ public class CardStack : Collidable
         {
             overlappingCollidables.Remove(collidable);
 
-            if (TryGetComponent<CardStack>(out CardStack cs))
+            if (collidable.TryGetComponent<CardStack>(out CardStack cs))
             {
                 cs.overlappingCollidables.Remove(this);
             }
