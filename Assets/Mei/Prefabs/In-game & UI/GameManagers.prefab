@@ -168,5 +168,7 @@ MonoBehaviour:
   phaseText: {fileID: 0}
   StartGameButton: {fileID: 0}
   winLoseText: {fileID: 0}
+  winLoseImage: {fileID: 0}
   isPaused: 0
   inTutorial: 0
+  startMoney: 0

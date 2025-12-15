@@ -8,6 +8,7 @@ public class BeamAttack : MonoBehaviour, IAttack
     // chain has no effect
 
     float distance = 30f;
+    float baseWidth = .2f;
     public LineRenderer beamPrefab;
     public Type[] compatibleModifiers = new Type[]
         {
@@ -30,8 +31,9 @@ public class BeamAttack : MonoBehaviour, IAttack
         {
             GameObject target = bugs[i];
             Vector3 dir = (target.transform.position - transform.position).normalized;
-
-            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(.2f, .2f), 0, dir, distance);
+            float aoe = baseWidth * alpaca.stats.AOE.value;
+            
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(aoe, aoe), 0, dir, distance);
             foreach (RaycastHit2D hit in hits)
             {
                 if (hit.collider.CompareTag("bug"))
@@ -44,6 +46,7 @@ public class BeamAttack : MonoBehaviour, IAttack
 
             lr.SetPosition(0, transform.position);
             lr.SetPosition(1, transform.position + dir * distance);
+            lr.SetWidth(aoe, aoe);
 
             Destroy(lr.gameObject, 0.2f);
         }

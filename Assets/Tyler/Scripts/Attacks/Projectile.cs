@@ -18,6 +18,8 @@ public class Projectile : MonoBehaviour
     Rigidbody2D rb;
     public bool rotateTowardsVelocity = true;
 
+    bool canHitBug = true;
+
     // set constant velocity towards direction, rotate towards direction
 
     // Should be called when instantiated/shot
@@ -49,7 +51,7 @@ public class Projectile : MonoBehaviour
         lifeTime -= Time.deltaTime;
         if (lifeTime < 0) Destroy(gameObject);
 
-        if (isHoming && target != null) // if isHoming and target wasnt already killed by something else
+        if (isHoming && target != null)
         {
             AimAtTarget();
         }
@@ -59,6 +61,7 @@ public class Projectile : MonoBehaviour
     {
         if (col.CompareTag("bug"))
         {
+            canHitBug = false;
             Bug bug = col.GetComponent<Bug>();
             if (bug != null && !bug.bugLife.Died) HitBug(bug);
         }
@@ -81,16 +84,18 @@ public class Projectile : MonoBehaviour
             chainedCount++;
             isHoming = true;
             target = FindClosestBug();
+            canHitBug = true;
         }
         // pierce
         else if (alpaca.stats.pierce.value > 0 && piercedCount < alpaca.stats.pierce.value)
         {
             piercedCount++;
             isHoming = false;
+            canHitBug = true;
         }
         // projectiles uses all chains before piercing
 
-        else Destroy(gameObject); // to do: might hit other bugs before projectile is destroyed
+        else Destroy(gameObject);
     }
 
     // find closest bug that hasnt been hit by this projectile

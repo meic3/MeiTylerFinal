@@ -30,6 +30,10 @@ public class AOEProjectile : Projectile
                 if (bug != null && !bug.bugLife.Died)
                 {
                     bug.bugLife.TakeDamage(alpaca.stats.damage.value * AOEDamageMultiplier, alpaca.stats.cull.value);
+                    
+                    // slow
+                    if (alpaca.stats.slow.value > 0)
+                    { bug.AddSlowInstance(alpaca.stats.slow.value, 2f); } // default 2 second slow for now
                 }
             }
         }
