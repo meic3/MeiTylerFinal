@@ -44,7 +44,7 @@ public class PackBuying : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 SFXManager.Instance.PlaySound(SFXManager.SoundType.BuyPack);
-                if (PlayerMoney.money >= packData.packPrice)
+                if (PlayerMoney.money >= packData.packPrice && CardStackManager.Instance.IsInPlayArea())
                 {
                     GameObject boughtPack = Instantiate(packData.packObject);
                     boughtPack.transform.localPosition = worldPos;

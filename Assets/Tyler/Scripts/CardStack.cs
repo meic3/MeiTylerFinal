@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class CardStack : Collidable
 {
@@ -12,12 +13,14 @@ public class CardStack : Collidable
 
     private bool audioPlayed = false;
 
-    private BoxCollider2D col;
+    [HideInInspector] public BoxCollider2D col;
     private float cardFollowSpeed = 20f;
     // per-card extra local offsets used to create a trailing/lag effect without changing parent
     private List<Vector3> extraLocalOffsets = new List<Vector3>();
     private Vector3 prevPosition;
     private float perCardLagMultiplier = 0.4f;
+    private float maxLag = 2f;
+
 
 
     void Start()
@@ -58,8 +61,9 @@ public class CardStack : Collidable
                 for (int i = 0; i < Cards.Count; i++)
                 {
                     // when the stack moves by delta, push an opposite offset onto each card so it stays behind
-                    float multiplier = 1f + (Cards.Count-1-i) * perCardLagMultiplier;
-                    extraLocalOffsets[i] -= delta * multiplier;
+                    float depth01 = (float)(Cards.Count - 1 - i) / Mathf.Max(1, Cards.Count - 1);
+                    float lagStrength = Mathf.Lerp(0f, maxLag, depth01);
+                    extraLocalOffsets[i] -= delta * lagStrength;
 
                     // decay the extra offset back to zero over time
                     extraLocalOffsets[i] = Vector3.Lerp(extraLocalOffsets[i], Vector3.zero, Time.deltaTime * cardFollowSpeed);
@@ -89,6 +93,8 @@ public class CardStack : Collidable
 
     public void OnLeftMouseDown()
     {
+        if (dragging) return;
+
         SFXManager.Instance.PlaySound(SFXManager.SoundType.Click);
         if (stackState == StackState.Expanded) return;
 
@@ -105,10 +111,14 @@ public class CardStack : Collidable
             alpaca.rangeIndicator.transform.localScale = new Vector3(alpaca.stats.range.value * 2, alpaca.stats.range.value * 2, 1);
             alpaca.rangeIndicator.SetActive(true);
         }
+
+        CardCountDebug.enabled = true;
     }
 
     public void OnLeftMouseUp()
     {
+        if (!CardStackManager.Instance.IsInPlayArea(this) && !CardStackManager.Instance.IsInSellArea(this)) return;
+
         SFXManager.Instance.PlaySound(SFXManager.SoundType.CardPlace);
         audioPlayed = false;
         // Stop dragging
@@ -132,6 +142,8 @@ public class CardStack : Collidable
                 StackOnto(cs);
             }
         }
+
+        CardCountDebug.enabled = false;
     }
 
     public void OnRightMouseDown()
@@ -241,6 +253,9 @@ public class CardStack : Collidable
         // refresh card positions
         if (stackState == StackState.Collapsed) CollapseStack();
         else if (stackState == StackState.Expanded) ExpandStack();
+
+        UpdateCardCountDebug();
+        overlappingCollidables.Clear();
     }
 
     public void RemoveCard(Card card)
@@ -255,8 +270,12 @@ public class CardStack : Collidable
             alpaca = null;
         }
 
+        if (Cards.Count == 0) Destroy(gameObject);
         CollapseStack();
         if (Cards.Count>1) ExpandStack();
+
+        UpdateCardCountDebug();
+        overlappingCollidables.Clear();
     }
 
 
@@ -287,7 +306,7 @@ public class CardStack : Collidable
         if (CardStackManager.Instance.stackBeingDragged == this) return;
 
         // move away from all colliding objects
-        for (int i = 0; i < overlappingCollidables.Count; i++)
+        for (int i = overlappingCollidables.Count - 1; i >= 0; i--)
         {
             if (overlappingCollidables[i] == null)
             {
@@ -317,7 +336,7 @@ public class CardStack : Collidable
         {
             overlappingCollidables.Remove(collidable);
 
-            if (TryGetComponent<CardStack>(out CardStack cs))
+            if (collidable.TryGetComponent<CardStack>(out CardStack cs))
             {
                 cs.overlappingCollidables.Remove(this);
             }
@@ -348,6 +367,8 @@ public class CardStack : Collidable
     // true if this cardstack can stack onto the other cardstack
     public bool CanStackOnto(CardStack other)
     {
+        if (Cards.Count + other.Cards.Count > CardStackManager.Instance.maxCardStackSize) return false;
+
         if (other.alpaca != null) return false;
         if (this.alpaca != null && other.alpaca != null) return false;
 
@@ -364,5 +385,11 @@ public class CardStack : Collidable
         }
 
         return true;
+    }
+
+    [SerializeField] TextMeshProUGUI CardCountDebug;
+    private void UpdateCardCountDebug()
+    {
+        CardCountDebug.text = Cards.Count + "/" + CardStackManager.Instance.maxCardStackSize;
     }
 }

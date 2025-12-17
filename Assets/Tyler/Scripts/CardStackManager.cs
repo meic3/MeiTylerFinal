@@ -19,6 +19,7 @@ public class CardStackManager : MonoBehaviour
         }
     }
 
+    public int maxCardStackSize = 5;
 
     public GameObject newCardStack;
 
@@ -27,6 +28,8 @@ public class CardStackManager : MonoBehaviour
 
     public CardStack stackBeingDragged;
     public bool showingOutline;
+
+    [SerializeField] Collider2D playArea;
 
     [SerializeField] TextMeshProUGUI hoveringCardNameText;
     [SerializeField] TextMeshProUGUI hoveringCardDescriptionText;
@@ -165,5 +168,25 @@ public class CardStackManager : MonoBehaviour
             
             cardStack.ShowOutline(b);
         }
+    }
+
+    public bool IsInPlayArea(CardStack cardStack)
+    {
+        Bounds b = cardStack.col.bounds;
+
+        return playArea.OverlapPoint(b.min) &&
+               playArea.OverlapPoint(b.max);
+    }
+
+    public bool IsInPlayArea()
+    {
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        return playArea.OverlapPoint(mouseWorldPos);
+    }
+
+    public bool IsInSellArea(CardStack cardStack)
+    {
+        return SellUI.GetComponent<SellCard>().cardStack != null;
     }
 }
