@@ -353,9 +353,11 @@ GameObject:
   m_Component:
   - component: {fileID: 453035403}
   - component: {fileID: 453035402}
+  - component: {fileID: 453035405}
+  - component: {fileID: 453035404}
   m_Layer: 0
   m_Name: Path
-  m_TagString: Untagged
+  m_TagString: path
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,6 +515,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &453035404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453035401}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3878d70840df04f65bdf54a2a5f6736f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!68 &453035405
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453035401}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -6.0908113, y: 0.26557803}
+  - {x: -5.0411816, y: 0.5455756}
+  - {x: -3.1693103, y: 2.542374}
+  - {x: -1.6520402, y: 3.430911}
+  - {x: -0.5556662, y: 3.1210415}
+  - {x: 0.0025291443, y: 2.3967156}
+  - {x: 0.15537834, y: 1.9339255}
+  - {x: 0.13789535, y: 0.76319194}
+  - {x: -0.3831494, y: 0.06965822}
+  - {x: -2.529663, y: -2.0486002}
+  - {x: -2.7671986, y: -3.0626493}
+  - {x: -1.9999523, y: -3.8099694}
+  - {x: -0.98645294, y: -3.9607253}
+  - {x: 0.106912255, y: -3.72822}
+  - {x: 0.8988551, y: -2.9109094}
+  - {x: 2.2424192, y: 0.04840064}
+  - {x: 3.4382262, y: 1.4387889}
+  - {x: 4.464605, y: 1.6774204}
+  - {x: 5.2829857, y: 1.4567525}
+  - {x: 5.52274, y: 0.52249473}
+  - {x: 5.4813247, y: -0.45637047}
+  - {x: 6.04601, y: -1.3555638}
+  - {x: 7.155224, y: -1.4075295}
+  - {x: 8.089191, y: -1.0377136}
+  - {x: 8.54893, y: -0.446675}
+  - {x: 9.752129, y: -0.2552997}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!114 &489031618 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8683284902184086271, guid: 39284ed23cf5c4713a55952a1c1de9ac, type: 3}

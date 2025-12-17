@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f457888c8c563248ace1fb6026a9259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Gnat
+  description: Default Description
   bugLife: {fileID: 0}
   debug: 0
   healthDebug: {fileID: 3689357538179915813, guid: a3fac890e31ec4a37a24449c86dbcf09, type: 3}
