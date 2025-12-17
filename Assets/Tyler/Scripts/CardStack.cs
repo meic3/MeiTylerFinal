@@ -18,7 +18,7 @@ public class CardStack : Collidable
     // per-card extra local offsets used to create a trailing/lag effect without changing parent
     private List<Vector3> extraLocalOffsets = new List<Vector3>();
     private Vector3 prevPosition;
-    private float perCardLagMultiplier = 0.4f;
+    //private float perCardLagMultiplier = 0.4f;
     private float maxLag = 2f;
 
 
@@ -321,7 +321,15 @@ public class CardStack : Collidable
             //if (cs != null && cs.pushedThisFrame) continue;
 
             // move away from the colliding object
-            Vector3 dir = (transform.position - overlappingCollidables[i].gameObject.transform.position).normalized;
+            Vector3 dir;
+            
+            if (overlappingCollidables[i].gameObject.tag == "path")
+            {
+                Vector3 point = overlappingCollidables[i].gameObject.GetComponent<Collider2D>().ClosestPoint(transform.position);
+                dir = (transform.position - point).normalized;
+            }
+            else dir = (transform.position - overlappingCollidables[i].gameObject.transform.position).normalized;
+
             if (dir == new Vector3(0, 0, 0)) { dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized; }
             transform.position += dir * pushSpd * Time.deltaTime;
         }
