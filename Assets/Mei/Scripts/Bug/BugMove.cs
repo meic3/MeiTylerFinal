@@ -37,6 +37,11 @@ public class BugMove : MonoBehaviour
         losePos = points[points.Length - 1];
     }
 
+    public float Speed()
+    {
+        return bug.isSlowed ? moveSpeed * (1 - bug.effectiveSlowInstance.slow) :  moveSpeed;
+    }
+
     void Update()
     {
         if (transform.position == losePos)
@@ -47,8 +52,7 @@ public class BugMove : MonoBehaviour
         }
         //if (points.Length < 2) return;
 
-        float speed = bug.isSlowed ? moveSpeed * (1 - bug.effectiveSlowInstance.slow) :  moveSpeed;
-        distanceTravelled += speed * Time.deltaTime;
+        distanceTravelled += Speed() * Time.deltaTime;
 
         if (distanceTravelled >= totalLength)
         {

@@ -34,6 +34,11 @@ public class UIManager : MonoBehaviour
             sellUI.SetActive(false);
         }
 
+
+
+        // look for info to show in description box based on mouse position
+        // current order of priority: shop, card pack, card, bug
+
         // show shop info if hovering
         PurchaseWidget purchaseWidget = TryHitPurchaseWidget();
         if (purchaseWidget != null)
@@ -48,7 +53,7 @@ public class UIManager : MonoBehaviour
         }
 
         // show card pack info if hovering
-        CardPack cardPack = TryHitCardPack();
+        CardPack cardPack = TryHit<CardPack>();
         if (cardPack != null)
         {
             infoNameText.text = cardPack.name;
@@ -64,12 +69,21 @@ public class UIManager : MonoBehaviour
             if (alpaca != null)
             {
                 infoNameText.text = card.name;
-                infoDescriptionText.text = card.description + "\n" + alpaca.stats.ToString();
+                infoDescriptionText.text = card.description + "\n\n" + alpaca.stats.ToString();
                 return;
             }
 
             infoNameText.text = card.name;
             infoDescriptionText.text = card.description;
+            return;
+        }
+
+        // show bug info
+        Bug bug = TryHit<Bug>();
+        if (bug != null)
+        {
+            infoNameText.text = bug.name;
+            infoDescriptionText.text = bug.description + "\n\n" + bug.ToString();
             return;
         }
 
@@ -81,11 +95,18 @@ public class UIManager : MonoBehaviour
 
 
 
-    public CardPack TryHitCardPack()
+    /*public CardPack TryHitCardPack()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity);
         return hit.collider != null ? hit.collider.GetComponent<CardPack>() : null;
+    }*/
+    public T TryHit<T>()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity);
+        if (hit.collider == null) return default;
+        return hit.collider.GetComponent<T>();
     }
     public PurchaseWidget TryHitPurchaseWidget()
     {

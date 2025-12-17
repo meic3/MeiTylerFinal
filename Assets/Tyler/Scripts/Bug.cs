@@ -1,10 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
 using TMPro;
 
 public class Bug : MonoBehaviour
 {
+    public string name = "Default Name";
+    public string description = "Default Description";
+
+
+
+
     BugMove bugMove;
     [HideInInspector] public BugLife bugLife;
 
@@ -104,4 +109,10 @@ public class Bug : MonoBehaviour
     }
 
     #endregion
+
+
+    public string ToString()
+    {
+        return "HP: " + bugLife.currentHP.ToString("F2") + "\nSpeed: " + bugMove.Speed() + "\nSlow: " + (isSlowed ? effectiveSlowInstance.slow.ToString() : "0");
+    }
 }
