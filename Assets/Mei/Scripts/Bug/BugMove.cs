@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BugMove : MonoBehaviour
@@ -99,5 +100,20 @@ public class BugMove : MonoBehaviour
     public void SetRoute(LineRenderer route)
     {
         lineRend = route;
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "projectile")
+        {
+            StartCoroutine(FlashRed());
+        }
+    }
+    public IEnumerator FlashRed()
+    {
+        SpriteRenderer bugSpr = GetComponent<SpriteRenderer>();
+        bugSpr.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        bugSpr.color = Color.white;
     }
 }
