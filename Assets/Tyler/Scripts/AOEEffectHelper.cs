@@ -5,6 +5,7 @@ public class AOEEffectHelper : MonoBehaviour
     public float lifetime = .1f;
 
     [HideInInspector] public float radius;
+    [SerializeField] GameObject spr;
     public int segments = 32;
 
     LineRenderer line;
@@ -12,6 +13,7 @@ public class AOEEffectHelper : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, lifetime);
+        spr.transform.localScale = new Vector3(radius, radius, 1);
 
         line = GetComponent<LineRenderer>();
         line.loop = true;
