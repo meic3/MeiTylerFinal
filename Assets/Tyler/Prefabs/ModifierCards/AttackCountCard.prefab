@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Double Barrel Straw
   description: Repeat attack at 1 additional nearby bug.
-  cardSellPrice: 4
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &2963717351081773281

@@ -487,7 +487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pistol Alpaca
   description: Shoots bullets
-  cardSellPrice: 6
+  cardSellPrice: 4
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!114 &2743082763417409154
@@ -522,6 +522,7 @@ MonoBehaviour:
     pierce:
       value: 0
     homingProjectile: 0
+  canAttack: 1
   rangeHelper: {fileID: 0}
   rangeIndicator: {fileID: 0}
 --- !u!114 &5536808119029955132

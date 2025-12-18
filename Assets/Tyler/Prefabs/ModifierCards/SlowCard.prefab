@@ -376,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Jar of Mud
   description: Attacks slow bugs. Attacks have +20% slow effect. Slows does not stack.
-  cardSellPrice: 4
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &2233270194538658938

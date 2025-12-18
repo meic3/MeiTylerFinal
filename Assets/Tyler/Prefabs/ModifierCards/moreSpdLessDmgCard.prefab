@@ -378,8 +378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Fur Mittens
-  description: Increase attack speed by 150%. Decrease damage by 30%.
-  cardSellPrice: 4
+  description: Increase attack speed by 200%. Decrease damage by 40%.
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &2233270194538658938
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9c36ec2a9144d15931a07f6b5e9bc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 2.5
+  multiplier: 3
 --- !u!114 &-3731049875091491935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bf98bca084541279fedb26381f4c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 0.7
+  multiplier: 0.6
 --- !u!1 &5889502376542400098
 GameObject:
   m_ObjectHideFlags: 0

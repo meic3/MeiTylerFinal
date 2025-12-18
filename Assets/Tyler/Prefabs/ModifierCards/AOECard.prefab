@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Blast Ring
   description: increase AOE
-  cardSellPrice: 4
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &3312080286304569407
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b28ecb40e354483ea28be0b0339264e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  value: 0.5
 --- !u!1 &8483910678559377639
 GameObject:
   m_ObjectHideFlags: 0
