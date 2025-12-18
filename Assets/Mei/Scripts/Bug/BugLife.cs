@@ -7,6 +7,8 @@ public class BugLife : MonoBehaviour
     public int moneyReward = 5;
     public bool Died = false;
 
+
+
     void Start()
     {
         currentHP = maxHP;
@@ -40,6 +42,11 @@ public class BugLife : MonoBehaviour
         if (generator != null)
         {
             generator.OnBugKilled();
+            if (generator.particle != null)
+            {
+                ParticleSystem ps = Instantiate(generator.particle, transform.position, Quaternion.identity);
+                ps.Play();
+            }
         }
         Destroy(gameObject);
     }
