@@ -12,6 +12,9 @@ public class BugGenerator : MonoBehaviour
     [SerializeField] 
     public LineRenderer lineRend;
 
+    [SerializeField]
+    public ParticleSystem particle;
+
     public WaveManager currentWave;
     private int spawnCurrentNum = 0;
     private int bugsSpawnedRN = 0;

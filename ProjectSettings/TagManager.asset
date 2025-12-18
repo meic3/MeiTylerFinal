@@ -10,6 +10,7 @@ TagManager:
   - path
   - background
   - gamemanager
+  - projectile
   layers:
   - Default
   - TransparentFX

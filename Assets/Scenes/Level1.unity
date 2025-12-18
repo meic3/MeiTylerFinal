@@ -843,6 +843,10 @@ PrefabInstance:
       propertyPath: lineRend
       value: 
       objectReference: {fileID: 453035402}
+    - target: {fileID: 4334946513125419720, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
+      propertyPath: particle
+      value: 
+      objectReference: {fileID: 8161443092507126592, guid: 01b5f9f87f2bac844b82cde4386c172d, type: 3}
     - target: {fileID: 4690787206143362875, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -891,6 +895,10 @@ PrefabInstance:
       propertyPath: timerText
       value: 
       objectReference: {fileID: 8768491}
+    - target: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
+      propertyPath: startMoney
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5947142223746813346, guid: eb2a68e52392a4069bca75fa849c19fd, type: 3}
       propertyPath: winLoseText
       value: 
