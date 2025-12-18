@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BugLife : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class BugLife : MonoBehaviour
     { TakeDamage(damage, 0); }
     public void TakeDamage(float damage, float cull)
     {
+        StartCoroutine(FlashRed());
         currentHP -= damage;
 
         if (currentHP <= cull)
@@ -49,5 +51,13 @@ public class BugLife : MonoBehaviour
             }
         }
         Destroy(gameObject);
+    }
+
+    public IEnumerator FlashRed()
+    {
+        SpriteRenderer bugSpr = GetComponent<SpriteRenderer>();
+        bugSpr.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        bugSpr.color = Color.white;
     }
 }
