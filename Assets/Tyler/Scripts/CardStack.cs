@@ -110,6 +110,7 @@ public class CardStack : Collidable
         {
             alpaca.rangeIndicator.transform.localScale = new Vector3(alpaca.stats.range.value * 2, alpaca.stats.range.value * 2, 1);
             alpaca.rangeIndicator.SetActive(true);
+            alpaca.canAttack = false;
         }
 
         CardCountDebug.enabled = true;
@@ -131,7 +132,11 @@ public class CardStack : Collidable
 
         CardStackManager.Instance.ClearStackBeingDragged();
 
-        if (alpaca != null) alpaca.rangeIndicator.SetActive(false);
+        if (alpaca != null)
+        {
+            alpaca.rangeIndicator.SetActive(false);
+            alpaca.canAttack = true;
+        }
 
         // dragging this stack onto another stack merges this stack onto the other stack
         if (overlappingCollidables.Count > 0)
@@ -332,6 +337,7 @@ public class CardStack : Collidable
 
             if (dir == new Vector3(0, 0, 0)) { dir = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized; }
             transform.position += dir * pushSpd * Time.deltaTime;
+            prevPosition = transform.position;
         }
         //pushedThisFrame = true;
     }

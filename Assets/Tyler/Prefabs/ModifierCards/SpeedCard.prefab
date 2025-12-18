@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Feather Pin
   description: Increase attack speed by 50%.
-  cardSellPrice: 4
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &2963717351081773281

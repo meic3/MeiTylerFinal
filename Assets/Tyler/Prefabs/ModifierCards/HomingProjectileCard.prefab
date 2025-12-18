@@ -389,7 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Laser Pointer
   description: Projectiles are homing.
-  cardSellPrice: 4
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &7934678979840824320

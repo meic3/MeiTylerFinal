@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AOEModifier : MonoBehaviour, ICardModifier
 {
-    [SerializeField] int value = 1;
+    [SerializeField] float value = 1;
 
     public void OnActivate(Alpaca alpaca)
     {

@@ -9,6 +9,7 @@ public class Alpaca : MonoBehaviour
     IAttack attack;
     float baseAttackCooldown = 1f;
     float cooldownTimer = 0f;
+    public bool canAttack = true; // cannot attack while being dragged (managed by CardStack)
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class Alpaca : MonoBehaviour
         CheckForStackUpdate();
 
         // attack on cooldown
+        if (!canAttack) return;
         if (baseAttackCooldown / stats.speed.value < cooldownTimer)
         {
             // if there are bugs to attack

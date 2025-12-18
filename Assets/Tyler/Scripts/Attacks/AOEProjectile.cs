@@ -15,10 +15,10 @@ public class AOEProjectile : Projectile
     protected override void HitBug(Bug bug)
     {
         base.HitBug(bug);
-        HitBugsAOE();
+        HitBugsAOE(bug);
     }
 
-    private void HitBugsAOE()
+    private void HitBugsAOE(Bug hitBug)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, AOERadius);
 
@@ -27,7 +27,7 @@ public class AOEProjectile : Projectile
             if (hit.CompareTag("bug"))
             {
                 Bug bug = hit.GetComponent<Bug>();
-                if (bug != null && !bug.bugLife.Died)
+                if (bug != null && bug != hitBug && !bug.bugLife.Died) // aoe does not damage bug already hit by projectile
                 {
                     bug.bugLife.TakeDamage(alpaca.stats.damage.value * AOEDamageMultiplier, alpaca.stats.cull.value);
                     

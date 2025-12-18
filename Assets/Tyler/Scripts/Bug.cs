@@ -113,6 +113,11 @@ public class Bug : MonoBehaviour
 
     public string ToString()
     {
-        return "HP: " + bugLife.currentHP.ToString("F2") + "\nSpeed: " + bugMove.Speed() + "\nSlow: " + (isSlowed ? effectiveSlowInstance.slow.ToString() : "0");
+        // idk why its throwing null ref ocassionally. temp fix
+        return
+            $"HP: {bugLife?.currentHP.ToString("F2") ?? "null"}\n" +
+            $"Speed: {bugMove?.Speed().ToString() ?? "null"}\n" +
+            $"Slow: {(isSlowed ? effectiveSlowInstance?.slow.ToString() ?? "null" : "0")}";
+        //return "HP: " + bugLife.currentHP.ToString("F2") + "\nSpeed: " + bugMove.Speed() + "\nSlow: " + (isSlowed ? effectiveSlowInstance.slow.ToString() : "0");
     }
 }

@@ -512,7 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: LOOONG Nail
   description: Projectile pierces 3 additional bugs.
-  cardSellPrice: 4
+  cardSellPrice: 6
   canDrag: 0
   CurrentStack: {fileID: 0}
 --- !u!61 &3312080286304569407
